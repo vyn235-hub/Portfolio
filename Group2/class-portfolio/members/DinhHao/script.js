@@ -1,0 +1,14 @@
+const root=document.documentElement;
+const themeButton=document.getElementById('theme-toggle');
+const menuButton=document.getElementById('menu-toggle');
+const rail=document.getElementById('rail');
+const copyButton=document.getElementById('copy-email');
+const email='dinhhaonguyen52@gmail.com';
+themeButton?.addEventListener('click',()=>{const dark=root.dataset.theme!=='dark';root.dataset.theme=dark?'dark':'light';document.body.dataset.theme=dark?'dark':'light';themeButton.setAttribute('aria-pressed',String(dark));themeButton.querySelector('.theme-glyph').textContent=dark?'☀':'◐';});
+menuButton?.addEventListener('click',()=>{const open=rail.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.textContent=open?'×':'☰';});
+rail?.querySelectorAll('.rail-link').forEach(link=>link.addEventListener('click',()=>{rail.classList.remove('open');menuButton?.setAttribute('aria-expanded','false');if(menuButton)menuButton.textContent='☰';}));
+copyButton?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(email);copyButton.textContent='ĐÃ SAO CHÉP';setTimeout(()=>copyButton.textContent='SAO CHÉP EMAIL',1800);}catch{window.location.href=`mailto:${email}`;}});
+const links=[...document.querySelectorAll('.rail-link')];
+const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.hash===`#${entry.target.id}`));}}),{rootMargin:'-35% 0px -55% 0px'});
+sections.forEach(section=>observer.observe(section));

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nguyễn Hoàng Duy – Full-stack Developer & Security Enthusiast</title>
+<meta name="description" content="Portfolio cá nhân của Nguyễn Hoàng Duy, sinh viên CNTT (UTH) định hướng Full-stack, UI/UX và An toàn thông tin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%236a4cf5%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-size=%2724%27 font-family=%27sans-serif%27 font-weight=%27700%27 fill=%27white%27 text-anchor=%27middle%27%3ENHD%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="progress"></div>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<!-- I.1 Header / Navbar -->
+<header class="site-header">
+  <div class="container bar">
+    <a href="#top" class="brand"><span class="brand-mark">NHD</span>Hoàng Duy</a>
+    <nav id="menu" class="nav" aria-label="Điều hướng chính">
+      <a href="#about">Giới thiệu</a>
+      <a href="#goal">Mục tiêu</a>
+      <a href="#skills">Kỹ năng</a>
+      <a href="#background">Học vấn</a>
+      <a href="#projects">Dự án</a>
+      <a href="#certs">Chứng chỉ</a>
+      <a href="#extras">Sở thích</a>
+      <a href="#lab">Thử nghiệm</a>
+      <a href="#contact">Liên hệ</a>
+    </nav>
+    <div class="tools">
+      <button id="theme-btn" class="icon-btn" type="button" aria-label="Chuyển giao diện sáng/tối">◐</button>
+      <button id="menu-btn" class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Mở menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- I.1 Banner -->
+<section class="hero container" id="home">
+  <p class="role">Full-stack Developer & Security Enthusiast</p>
+  <h1>Nguyễn Hoàng Duy</h1>
+  <p class="lead">Sinh viên Công nghệ Thông tin tại Đại học Giao thông vận tải TP. Hồ Chí Minh (UTH), đam mê xây dựng sản phẩm web hiện đại, an toàn và dễ sử dụng.</p>
+  <div class="actions">
+    <a class="btn primary" href="#projects">Xem dự án</a>
+    <a class="btn" href="#about">Về tôi</a>
+    <a class="btn" href="#contact">Liên hệ với tôi</a>
+  </div>
+  <ul class="facts"><li>GPA 3.1 / 4.0</li><li>6 dự án</li><li>UTH · TP. Hồ Chí Minh</li></ul>
+  <ul class="social" aria-label="Liên kết cá nhân">
+    <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+    <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="https://strava.com" target="_blank" rel="noopener">Strava</a></li>
+    <li><a href="mailto:nguyenhoangduy.dev@gmail.com">Email</a></li>
+  </ul>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="track"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Tailwind CSS</span><span>REST API</span><span>OWASP ZAP</span><span>DVWA</span><span>PGP</span><span>PlantUML</span><span>Mermaid.js</span><span>UML</span><span>ERD</span><span>SQL</span><span>Python</span><span>Git</span><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Tailwind CSS</span><span>REST API</span><span>OWASP ZAP</span><span>DVWA</span><span>PGP</span><span>PlantUML</span><span>Mermaid.js</span><span>UML</span><span>ERD</span><span>SQL</span><span>Python</span><span>Git</span></div></div>
+
+<!-- I.2 Giới thiệu bản thân (About Me) -->
+<section class="section container about" id="about" aria-labelledby="about-title">
+  <header class="about-head">
+    <span class="about-kicker">About me</span>
+    <h2 id="about-title">Giới thiệu bản thân</h2>
+  </header>
+
+  <div class="about-grid">
+    <!-- Cột trái: ảnh đại diện -->
+    <figure class="about-photo">
+      <div class="about-frame">
+        <img src="images/avatar.jpg" alt="Ảnh chân dung Nguyễn Hoàng Duy" width="640" height="853" decoding="async">
+      </div>
+      <span class="badge b1">Sinh viên CNTT</span>
+      <span class="badge b2">Web &amp; UI</span>
+    </figure>
+
+    <!-- Cột phải: thông tin cá nhân -->
+    <div class="about-info">
+      <p class="greet">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V5.5a1.5 1.5 0 0 1 3 0V10m0 0V4a1.5 1.5 0 0 1 3 0v6m0 0V5.5a1.5 1.5 0 0 1 3 0V12m0 0V8.5a1.5 1.5 0 0 1 3 0V15a7 7 0 0 1-7 7h-.5a7 7 0 0 1-5.6-2.8L4 15.5a1.6 1.6 0 0 1 2.4-2L7 14"/></svg>
+        Xin chào, mình là
+      </p>
+      <h3 class="about-name">Nguyễn Hoàng Duy</h3>
+      <p class="about-role">Sinh viên Công nghệ thông tin <span>· Web &amp; UI</span></p>
+
+      <div class="about-text">
+        <p class="first">Mình là sinh viên Công nghệ thông tin tại Đại học Giao thông vận tải TP. Hồ Chí Minh (UTH), quan tâm đến phát triển website, thiết kế giao diện người dùng và các sản phẩm công nghệ.</p>
+        <p>Mình thích biến ý tưởng thành những giao diện rõ ràng, dễ dùng và chạy ổn định, đồng thời tìm hiểu thêm về bảo mật để sản phẩm an toàn hơn. Mình học bằng cách thực hành và giữ sự kiên trì như những buổi chạy bộ mỗi ngày.</p>
+        <p>Mục tiêu của mình là tiếp tục học hỏi, hoàn thiện các dự án cá nhân và tích lũy kinh nghiệm thực tế trong lĩnh vực công nghệ thông tin.</p>
+      </div>
+
+      <ul class="about-chips" aria-label="Thông tin nhanh">
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg></span>
+          <span><small>Ngành học</small><b>Công nghệ thông tin</b></span>
+        </li>
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span>
+          <span><small>Sở thích công nghệ</small><b>Web, UI &amp; bảo mật</b></span>
+        </li>
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span><small>Định hướng nghề nghiệp</small><b>Full-stack &amp; Security</b></span>
+        </li>
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <span><small>Trường &amp; địa điểm</small><b>UTH · TP. Hồ Chí Minh</b></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- I.3 Mục tiêu nghề nghiệp -->
+<section class="section container" id="goal">
+  <h2>Mục tiêu nghề nghiệp</h2>
+  <div class="goal">
+    <p class="goal-title">Full-stack & Security Engineer</p>
+    <p>Hướng tới trở thành chuyên gia thiết kế hệ thống an toàn, phát triển các giải pháp web có độ tin cậy và hiệu năng cao. Mục tiêu trước mắt: hoàn thiện các dự án cá nhân, tích lũy kinh nghiệm thực tập và nâng cao kỹ năng giao tiếp.</p>
+  </div>
+</section>
+
+<!-- I.4 Kỹ năng -->
+<section class="section container" id="skills">
+  <h2>Kỹ năng</h2>
+  <div class="grid3 bento">
+    <article class="card">
+      <h3>An toàn thông tin</h3>
+      <p>Rà soát lỗ hổng, kiểm thử web app và triển khai giải pháp phòng vệ theo chuẩn OWASP Top 10.</p>
+      <ul class="tags"><li>OWASP ZAP</li><li>DVWA</li><li>PGP</li><li>SQLi / XSS</li><li>Bảo mật API</li></ul>
+    </article>
+    <article class="card">
+      <h3>Thiết kế hệ thống</h3>
+      <p>Chuẩn hóa tài liệu kiến trúc phần mềm, sơ đồ luồng dữ liệu và thiết kế cơ sở dữ liệu.</p>
+      <ul class="tags"><li>PlantUML</li><li>Mermaid.js</li><li>UML</li><li>ERD</li><li>Sequence Diagram</li></ul>
+    </article>
+    <article class="card">
+      <h3>Phát triển web</h3>
+      <p>Xây dựng giao diện mượt, phản hồi tốt trên mọi màn hình cùng RESTful API chuẩn mực.</p>
+      <ul class="tags"><li>HTML5</li><li>CSS3</li><li>JavaScript ES6+</li><li>Tailwind CSS</li><li>REST API</li></ul>
+    </article>
+    <article class="card">
+      <h3>Nền tảng & kỹ năng mềm</h3>
+      <p>Lập trình căn bản, cơ sở dữ liệu, quản lý phiên bản, cùng khả năng tự học và phối hợp trong nhóm.</p>
+      <ul class="tags"><li>SQL</li><li>Python</li><li>Git</li><li>UI / UX</li><li>Làm việc nhóm</li><li>Tự học</li></ul>
+    </article>
+  </div>
+</section>
+
+<!-- I.5 Học vấn / Kinh nghiệm / Hoạt động (tabs) -->
+<section class="section container" id="background">
+  <h2>Học vấn, kinh nghiệm & hoạt động</h2>
+  <div class="tabs" role="tablist" aria-label="Học vấn và hoạt động">
+    <button role="tab" id="tab-edu" aria-selected="true" aria-controls="pane-edu" type="button">Học vấn</button>
+    <button role="tab" id="tab-exp" aria-selected="false" aria-controls="pane-exp" type="button">Kinh nghiệm</button>
+    <button role="tab" id="tab-act" aria-selected="false" aria-controls="pane-act" type="button">Hoạt động</button>
+  </div>
+  <div class="pane" id="pane-edu" role="tabpanel" aria-labelledby="tab-edu">
+    <div class="grid3 cards">
+      <article class="card edu">
+        <img src="images/edu-uth.jpg" alt="Minh họa tòa nhà trường đại học" loading="lazy" width="960" height="600">
+        <div class="edu-body"><span class="kick">Đại học</span><h4>Đại học Giao thông vận tải TP.HCM (UTH)</h4><p>Sinh viên ngành Công nghệ Thông tin. Điểm tích lũy tốt: GPA 3.1 / 4.0.</p><ul class="tags"><li>CNTT</li><li>GPA 3.1 / 4.0</li></ul></div>
+      </article>
+      <article class="card edu">
+        <img src="images/edu-csdl.jpg" alt="Màn hình truy vấn SQL trên cơ sở dữ liệu" loading="lazy" width="960" height="600">
+        <div class="edu-body"><span class="kick">Kiến thức nền tảng</span><h4>Lập trình & Cơ sở dữ liệu</h4><p>Học nền tảng lập trình, thiết kế bảng, viết truy vấn SQL và hệ thống thông tin.</p><ul class="tags"><li>Python</li><li>SQL</li><li>Hệ thống thông tin</li></ul></div>
+      </article>
+      <article class="card edu">
+        <img src="images/edu-web.jpg" alt="Trình soạn thảo mã HTML, CSS, JavaScript và bản xem trước" loading="lazy" width="960" height="600">
+        <div class="edu-body"><span class="kick">Tự học</span><h4>Phát triển web</h4><p>Tự luyện HTML, CSS, JavaScript và quy trình phát triển sản phẩm qua các bài tập, dự án.</p><ul class="tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li></ul></div>
+      </article>
+    </div>
+  </div>
+  <div class="pane" id="pane-exp" role="tabpanel" aria-labelledby="tab-exp" hidden>
+    <div class="grid3 cards">
+      <article class="card edu">
+        <img src="images/du-an-bao-mat.jpg" alt="Báo cáo quét lỗ hổng OWASP ZAP" loading="lazy" width="960" height="600">
+        <div class="edu-body"><span class="kick">Thực hành</span><h4>Đánh giá an toàn web</h4><p>Quét lỗ hổng OWASP Top 10 trên DVWA bằng OWASP ZAP, lập báo cáo và đề xuất khắc phục.</p><ul class="tags"><li>OWASP ZAP</li><li>DVWA</li></ul></div>
+      </article>
+      <article class="card edu">
+        <img src="images/du-an-kien-truc.jpg" alt="Sơ đồ tuần tự viết bằng Mermaid" loading="lazy" width="960" height="600">
+        <div class="edu-body"><span class="kick">Thực hành</span><h4>Mô hình hóa hệ thống</h4><p>Thiết kế UML, ERD, Sequence Diagram bằng PlantUML và Mermaid cho hệ thống quản lý.</p><ul class="tags"><li>PlantUML</li><li>Mermaid</li><li>UML</li></ul></div>
+      </article>
+      <article class="card edu">
+        <img src="images/du-an-dat-san.jpg" alt="Giao diện đặt lịch sân thể thao" loading="lazy" width="960" height="600">
+        <div class="edu-body"><span class="kick">Làm việc nhóm</span><h4>Phân tích yêu cầu & dự án nhóm</h4><p>Phối hợp cùng thành viên trong nhóm để phân tích yêu cầu, thiết kế cơ sở dữ liệu và giao diện.</p><ul class="tags"><li>Làm việc nhóm</li><li>Phân tích yêu cầu</li></ul></div>
+      </article>
+    </div>
+  </div>
+  <div class="pane" id="pane-act" role="tabpanel" aria-labelledby="tab-act" hidden>
+    <div class="grid3 cards">
+      <article class="card edu">
+        <img src="images/hobby-chay-bo.jpg" alt="Tuyến chạy bộ trên bản đồ" loading="lazy" width="960" height="600">
+        <div class="edu-body"><span class="kick">Thể thao</span><h4>Chạy bộ trên Strava</h4><p>Rèn ý chí kiên trì và kỷ luật bản thân qua từng quãng đường chạy hàng ngày.</p><ul class="tags"><li>Strava</li><li>Kiên trì</li><li>Kỷ luật</li></ul></div>
+      </article>
+      <article class="card edu">
+        <img src="images/hobby-bao-mat.jpg" alt="Cửa sổ dòng lệnh với GPG và ZAP" loading="lazy" width="960" height="600">
+        <div class="edu-body"><span class="kick">Tự nghiên cứu</span><h4>Thực hành bảo mật</h4><p>Tìm hiểu mã hóa PGP, thử tấn công và phòng thủ trong môi trường lab an toàn.</p><ul class="tags"><li>PGP</li><li>OWASP</li><li>Lab</li></ul></div>
+      </article>
+      <article class="card edu">
+        <img src="images/hobby-tarot.jpg" alt="Trải bài Tarot trên bàn gỗ" loading="lazy" width="960" height="600">
+        <div class="edu-body"><span class="kick">Khám phá bản thân</span><h4>Tarot & Tử Vi</h4><p>Chiêm nghiệm góc nhìn cuộc sống và tư duy tâm lý học để thư giãn, nhìn lại bản thân.</p><ul class="tags"><li>Tarot</li><li>Tử Vi</li><li>Tâm lý học</li></ul></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- I.6 Dự án cá nhân -->
+<section class="section container" id="projects">
+  <h2>Dự án cá nhân</h2>
+  <div class="filters" role="group" aria-label="Lọc dự án">
+    <button class="chip active" data-filter="all" type="button">Tất cả</button>
+    <button class="chip" data-filter="system" type="button">System Design</button>
+    <button class="chip" data-filter="security" type="button">Security Audit</button>
+    <button class="chip" data-filter="web" type="button">Web & UI</button>
+  </div>
+  <div class="grid2">
+    <article class="project" data-cat="system">
+      <div class="shot-wrap"><img src="images/du-an-kien-truc.jpg" alt="Sơ đồ tuần tự Client, API, Database viết bằng Mermaid" loading="lazy" width="960" height="600"><span class="status">Hoàn thành</span></div>
+      <div class="project-body">
+        <h3>Mô hình hóa kiến trúc hệ thống</h3>
+        <p>Bộ sơ đồ UML, ERD và Sequence Diagram hoàn chỉnh cho hệ thống quản lý, chuẩn hóa bằng PlantUML và Mermaid.</p>
+        <ul class="tags"><li>PlantUML</li><li>Mermaid</li><li>UML</li></ul>
+        <button class="btn small" type="button" data-modal="m1">Xem chi tiết</button>
+      </div>
+    </article>
+    <article class="project" data-cat="security">
+      <div class="shot-wrap"><img src="images/du-an-bao-mat.jpg" alt="Báo cáo quét lỗ hổng OWASP ZAP" loading="lazy" width="960" height="600"><span class="status">Hoàn thành</span></div>
+      <div class="project-body">
+        <h3>Đánh giá & phân tích an toàn web</h3>
+        <p>Quét lỗ hổng OWASP Top 10 trên môi trường DVWA bằng OWASP ZAP, lập báo cáo khắc phục chi tiết.</p>
+        <ul class="tags"><li>OWASP ZAP</li><li>DVWA</li><li>OWASP Top 10</li></ul>
+        <button class="btn small" type="button" data-modal="m2">Xem chi tiết</button>
+      </div>
+    </article>
+    <article class="project" data-cat="web">
+      <div class="shot-wrap"><img src="images/du-an-portfolio.jpg" alt="Trang chủ website portfolio cá nhân" loading="lazy" width="960" height="600"><span class="status">Hoàn thành</span></div>
+      <div class="project-body">
+        <h3>Website Portfolio cá nhân</h3>
+        <p>Giới thiệu bản thân, kỹ năng, học vấn và dự án; responsive, dark mode và điều hướng rõ ràng.</p>
+        <ul class="tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li></ul>
+        <button class="btn small" type="button" data-modal="m3">Xem chi tiết</button>
+      </div>
+    </article>
+    <article class="project" data-cat="web system">
+      <div class="shot-wrap"><img src="images/du-an-dat-san.jpg" alt="Giao diện lịch đặt sân thể thao" loading="lazy" width="960" height="600"><span class="status">Ý tưởng</span></div>
+      <div class="project-body">
+        <h3>Hệ thống đặt lịch sân thể thao</h3>
+        <p>Nền tảng đặt sân bóng đá/cầu lông cho trường học hoặc câu lạc bộ: xem lịch, gửi yêu cầu, quản lý trạng thái.</p>
+        <ul class="tags"><li>HTML/CSS/JS</li><li>SQL</li><li>UML</li></ul>
+        <button class="btn small" type="button" data-modal="m4">Xem chi tiết</button>
+      </div>
+    </article>
+    <article class="project" data-cat="web">
+      <div class="shot-wrap"><img src="images/du-an-nhiep-anh-phim.jpg" alt="Bảng tin cộng đồng nhiếp ảnh phim" loading="lazy" width="960" height="600"><span class="status">Ý tưởng</span></div>
+      <div class="project-body">
+        <h3>Cộng đồng nhiếp ảnh phim</h3>
+        <p>Kết nối người yêu nhiếp ảnh phim với dịch vụ phòng tối, phòng chụp; mở rộng được hồ sơ và danh sách dịch vụ.</p>
+        <ul class="tags"><li>Web App</li><li>UI/UX</li><li>Database</li></ul>
+        <button class="btn small" type="button" data-modal="m5">Xem chi tiết</button>
+      </div>
+    </article>
+    <article class="project" data-cat="web">
+      <div class="shot-wrap"><img src="images/du-an-quan-ly.jpg" alt="Bảng điều khiển quản lý thông tin" loading="lazy" width="960" height="600"><span class="status">Mẫu giao diện</span></div>
+      <div class="project-body">
+        <h3>Giao diện quản lý thông tin</h3>
+        <p>Mẫu giao diện quản lý dữ liệu: bố cục dễ nhìn, bảng thông tin, biểu mẫu nhập liệu, trạng thái tương tác.</p>
+        <ul class="tags"><li>UI Design</li><li>CSS Grid</li><li>JavaScript</li></ul>
+        <button class="btn small" type="button" data-modal="m6">Xem chi tiết</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- I.7 Chứng chỉ / Thành tích -->
+<section class="section container" id="certs">
+  <h2>Chứng chỉ & thành tích</h2>
+  <div class="grid3">
+    <article class="card">
+      <h3>Thành tích học tập</h3>
+      <ul class="achv">
+        <li><strong>GPA 3.1 / 4.0</strong> Điểm tích lũy tốt ngành Công nghệ Thông tin.</li>
+        <li><strong>Học tập kỷ luật</strong> Duy trì kết quả ổn định cùng thói quen chạy bộ mỗi ngày.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <h3>Thành tích thực hành</h3>
+      <ul class="achv">
+        <li><strong>Đánh giá an toàn web</strong> Quét lỗ hổng OWASP Top 10 trên DVWA bằng OWASP ZAP và lập báo cáo khắc phục.</li>
+        <li><strong>Bộ tài liệu thiết kế hệ thống</strong> Hoàn thiện UML, ERD và Sequence Diagram bằng PlantUML, Mermaid.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <h3>Lộ trình chứng chỉ</h3>
+      <p class="muted">Chưa có chứng chỉ chính thức. Các chứng chỉ đang hướng tới:</p>
+      <ul class="roadmap">
+        <li><span>Google Cybersecurity Certificate</span><em>Đang hướng tới</em></li>
+        <li><span>CompTIA Security+</span><em>Mục tiêu</em></li>
+        <li><span>eJPT (Junior Penetration Tester)</span><em>Mục tiêu</em></li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- Sở thích -->
+<section class="section container" id="extras">
+  <h2>Sở thích & đam mê</h2>
+  <div class="grid2">
+    <article class="hobby">
+      <img src="images/hobby-chay-bo.jpg" alt="Tuyến chạy bộ trên bản đồ Strava" loading="lazy" width="960" height="600">
+      <div class="hobby-body">
+        <h3>Chạy bộ</h3>
+        <p>Mỗi buổi chạy là một bài tập về sự kiên trì. Duy theo dõi hoạt động trên Strava để giữ nhịp đều và rèn kỷ luật.</p>
+        <p class="learn"><strong>Điều rút ra:</strong> Thói quen vận động giúp đầu óc minh mẫn khi giải quyết bài toán khó.</p>
+        <ul class="tags"><li>Strava</li><li>Kiên trì</li><li>Kỷ luật</li></ul>
+      </div>
+    </article>
+    <article class="hobby">
+      <img src="images/hobby-bao-mat.jpg" alt="Cửa sổ dòng lệnh chạy GPG và OWASP ZAP" loading="lazy" width="960" height="600">
+      <div class="hobby-body">
+        <h3>Bảo mật web</h3>
+        <p>Tìm hiểu mã hóa PGP, nghiên cứu lỗ hổng web app thực tế và cách phòng thủ trong môi trường lab an toàn.</p>
+        <p class="learn"><strong>Điều rút ra:</strong> Thử tấn công giúp hiểu vì sao một đoạn code có thể bị khai thác.</p>
+        <ul class="tags"><li>PGP</li><li>OWASP</li><li>DVWA</li></ul>
+      </div>
+    </article>
+    <article class="hobby">
+      <img src="images/hobby-he-thong.jpg" alt="Sơ đồ ERD vẽ trên công cụ thiết kế" loading="lazy" width="960" height="600">
+      <div class="hobby-body">
+        <h3>Thiết kế hệ thống</h3>
+        <p>Thích biến ý tưởng phức tạp thành sơ đồ trực quan, dễ đọc: ai gọi ai, dữ liệu đi đâu, chỗ nào cần bảo vệ.</p>
+        <p class="learn"><strong>Điều rút ra:</strong> Một sơ đồ tốt giúp cả nhóm cùng hiểu một hệ thống.</p>
+        <ul class="tags"><li>PlantUML</li><li>Mermaid</li><li>ERD</li></ul>
+      </div>
+    </article>
+    <article class="hobby">
+      <img src="images/hobby-tarot.jpg" alt="Duy trải các lá bài Tarot trên bàn gỗ" loading="lazy" width="960" height="600">
+      <div class="hobby-body">
+        <h3>Phương Đông học</h3>
+        <p>Chiêm nghiệm góc nhìn cuộc sống và tư duy tâm lý học qua Tarot và Tử Vi. Đây là cách Duy thư giãn và nhìn lại bản thân.</p>
+        <p class="learn"><strong>Điều rút ra:</strong> Lắng nghe và đặt câu hỏi đúng cũng là kỹ năng quan trọng khi làm việc với con người.</p>
+        <ul class="tags"><li>Tarot</li><li>Tử Vi</li><li>Tâm lý học</li></ul>
+      </div>
+    </article>
+  </div>
+
+  <h3 class="sub">Góc hình ảnh</h3>
+  <p class="muted">Một vài khoảnh khắc đời thường, bấm vào ảnh để xem lớn.</p>
+  <ul class="gallery">
+    <li><button type="button" class="shot" data-src="images/gallery-chan-dung.jpg" data-cap="Chân dung"><img src="images/gallery-chan-dung.jpg" alt="Nguyễn Hoàng Duy ngồi trải bài Tarot" loading="lazy" width="720" height="643"><span>Chân dung</span></button></li>
+    <li><button type="button" class="shot" data-src="images/gallery-tarot.jpg" data-cap="Trải bài Tarot"><img src="images/gallery-tarot.jpg" alt="Các lá bài Tarot trên bàn gỗ" loading="lazy" width="720" height="586"><span>Trải bài Tarot</span></button></li>
+    <li><button type="button" class="shot" data-src="images/gallery-bang-ghim.jpg" data-cap="Góc bảng ghim"><img src="images/gallery-bang-ghim.jpg" alt="Bảng ghim ghi chú và ảnh trên tường" loading="lazy" width="720" height="369"><span>Góc bảng ghim</span></button></li>
+  </ul>
+</section>
+
+<!-- V. Sáng tạo: mô phỏng request -->
+<section class="section container" id="lab">
+  <h2>Thử nghiệm: request này có an toàn không?</h2>
+  <p class="muted">Nhập tên đăng nhập và xem request đi qua Client, API, Database. Thử <code>admin' OR '1'='1</code> hoặc <code>&lt;script&gt;</code>.</p>
+  <div class="lab">
+    <label for="lab-input">Tên đăng nhập</label>
+    <div class="lab-row">
+      <input id="lab-input" type="text" value="hoangduy" autocomplete="off">
+      <button id="lab-run" class="btn primary" type="button">Gửi request</button>
+    </div>
+    <ol class="flow" id="flow" aria-live="polite">
+      <li data-s="1"><b>Client</b><span>POST /login</span></li>
+      <li data-s="2"><b>API</b><span>Kiểm tra đầu vào</span></li>
+      <li data-s="3"><b>Database</b><span>Truy vấn người dùng</span></li>
+      <li data-s="4"><b>Kết quả</b><span>Chờ gửi request</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- II.15 Liên hệ -->
+<section class="section container" id="contact">
+  <h2>Liên hệ</h2>
+  <div class="contact">
+    <div>
+      <p>Sẵn sàng trao đổi cơ hội thực tập, phát triển dự án hoặc giao lưu học hỏi chuyên môn.</p>
+      <dl class="info">
+        <dt>Email</dt><dd><a href="mailto:nguyenhoangduy.dev@gmail.com">nguyenhoangduy.dev@gmail.com</a></dd>
+        <dt>Địa điểm</dt><dd>TP. Hồ Chí Minh, Việt Nam</dd>
+        <dt>GitHub</dt><dd><a href="https://github.com" target="_blank" rel="noopener">github.com/hoangduy-dev</a></dd>
+      </dl>
+    </div>
+    <form id="contact-form" novalidate>
+      <div class="field"><label for="f-name">Họ tên</label><input id="f-name" type="text" autocomplete="name"><small class="err" id="e-name"></small></div>
+      <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" autocomplete="email"><small class="err" id="e-email"></small></div>
+      <div class="field"><label for="f-msg">Nội dung</label><textarea id="f-msg" rows="4"></textarea><small class="err" id="e-msg"></small></div>
+      <button class="btn primary" type="submit">Gửi tin nhắn</button>
+      <p class="ok" id="form-ok" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="year">2025</span> Nguyễn Hoàng Duy</p>
+    <p><a href="#top">Lên đầu trang</a></p>
+  </div>
+</footer>
+
+<!-- Modal chi tiết dự án -->
+<dialog id="modal" aria-labelledby="modal-title">
+  <button class="icon-btn close" type="button" id="modal-close" aria-label="Đóng">✕</button>
+  <img id="modal-img" src="" alt="" width="960" height="600">
+  <h3 id="modal-title"></h3>
+  <p id="modal-desc"></p>
+  <ul class="feat" id="modal-feat"></ul>
+  <p><strong>Công nghệ:</strong> <span id="modal-tech"></span></p>
+  <a class="btn small" id="modal-link" href="https://github.com" target="_blank" rel="noopener">Xem trên GitHub</a>
+</dialog>
+
+<dialog id="lightbox" aria-label="Xem ảnh lớn">
+  <button class="icon-btn close" type="button" id="lightbox-close" aria-label="Đóng">✕</button>
+  <figure><img id="lightbox-img" src="" alt=""><figcaption id="lightbox-cap"></figcaption></figure>
+</dialog>
+
+<script src="js/main.js"></script>
+</body>
+</html>

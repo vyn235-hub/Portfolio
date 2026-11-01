@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio của Trần Quang Trí Nguyên - sinh viên năm 3 Công nghệ thông tin (UTH), định hướng Khoa học máy tính và AI.">
+  <meta name="author" content="Trần Quang Trí Nguyên">
+
+  <title>Trần Quang Trí Nguyên | JARVIS Protocol Portfolio</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neon: {
+              cyan: '#00f3ff',     /* Xanh Hacker */
+              blue: '#0055ff',     /* Xanh Deep Space */
+              crimson: '#ff003c',  /* Đỏ Báo Động */
+              gold: '#ffb700',     /* Vàng Năng Lượng */
+              dark: '#030712',     /* Đen Vực Thẳm */
+              panel: '#0a0f1c',    /* Đen Giao Diện */
+            }
+          },
+          fontFamily: {
+            sans: ['Be Vietnam Pro', 'sans-serif'],
+            scifi: ['Rajdhani', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          animation: {
+            'spin-slow': 'spin 10s linear infinite',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ==========================================
+       1. NỀN, THANH CUỘN & CON TRỎ RADAR
+       ========================================== */
+    body {
+      background-color: #030712;
+      color: #e5e7eb;
+      overflow-x: hidden;
+    }
+    
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #030712; border-left: 1px solid rgba(0,243,255,0.1); }
+    ::-webkit-scrollbar-thumb { background: #00f3ff; border-radius: 4px; box-shadow: 0 0 10px #00f3ff; }
+    ::-webkit-scrollbar-thumb:hover { background: #ff003c; box-shadow: 0 0 10px #ff003c; }
+
+    /* Lưới Không Gian Tối */
+    .bg-grid {
+      background-size: 60px 60px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+      animation: gridMove 30s linear infinite; pointer-events: none;
+    }
+    @keyframes gridMove { 0% { background-position: 0 0; } 100% { background-position: 60px 60px; } }
+
+    /* Con Trỏ Sniper */
+    .cursor-sniper {
+      pointer-events: none; position: fixed; width: 600px; height: 600px;
+      border-radius: 50%; transform: translate(-50%, -50%); z-index: -1;
+      background: radial-gradient(circle, rgba(0, 243, 255, 0.15) 0%, transparent 60%);
+      mix-blend-mode: screen; transition: width 0.3s, height 0.3s;
+    }
+    .cursor-center {
+      pointer-events: none; position: fixed; width: 8px; height: 8px;
+      background: #00f3ff; box-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff;
+      border-radius: 50%; transform: translate(-50%, -50%); z-index: 9999;
+    }
+
+    /* ==========================================
+       2. MÀN HÌNH BOOT (PRELOADER)
+       ========================================== */
+    #preloader {
+      position: fixed; inset: 0; background-color: #030712; z-index: 99999;
+      display: flex; flex-direction: column; justify-content: center; padding: 2rem;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .terminal-text { font-family: 'JetBrains Mono', monospace; color: #00f3ff; text-shadow: 0 0 5px #00f3ff; font-size: 0.9rem; }
+    
+    /* ==========================================
+       3. DARK GLASSMORPHISM & HOLOGRAPHIC TILT
+       ========================================== */
+    .glass-dark {
+      background: rgba(10, 15, 28, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 243, 255, 0.2); box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 243, 255, 0.05);
+    }
+    
+    .preserve-3d { transform-style: preserve-3d; perspective: 1500px; }
+    .pop-out { transform: translateZ(40px); }
+    .pop-out-high { transform: translateZ(80px); }
+    
+    /* Quầng sáng kính Holographic */
+    .tilt-card { position: relative; overflow: hidden; }
+    .glare {
+      position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.4s ease;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%); mix-blend-mode: overlay; z-index: 10;
+    }
+
+    /* Quét Radar (Scanner) */
+    .scanner-line {
+      position: absolute; left: 0; width: 100%; height: 2px; background: #00f3ff; box-shadow: 0 0 15px 2px #00f3ff;
+      animation: scan 3s cubic-bezier(0.4, 0, 0.2, 1) infinite; opacity: 0; z-index: 20; pointer-events: none;
+    }
+    @keyframes scan { 0% { top: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+
+    /* ==========================================
+       4. HUD CORNERS & GLITCH
+       ========================================== */
+    .hud-corner { position: absolute; border-color: #00f3ff; pointer-events: none; width: 0; height: 0; opacity: 0; transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s; }
+    .reveal-visible .hud-corner { width: 24px; height: 24px; opacity: 1; box-shadow: 0 0 10px rgba(0, 243, 255, 0.5); }
+    .hud-tl { top: -2px; left: -2px; border-top: 3px solid; border-left: 3px solid; }
+    .hud-tr { top: -2px; right: -2px; border-top: 3px solid; border-right: 3px solid; }
+    .hud-bl { bottom: -2px; left: -2px; border-bottom: 3px solid; border-left: 3px solid; }
+    .hud-br { bottom: -2px; right: -2px; border-bottom: 3px solid; border-right: 3px solid; }
+
+    /* Nút Quét Lỗi (Glitch Hover) */
+    .btn-cyber { position: relative; overflow: hidden; transition: all 0.3s; z-index: 1; }
+    .btn-cyber::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.4), transparent);
+      transition: all 0.5s ease; z-index: -1; transform: skewX(-30deg);
+    }
+    .btn-cyber:hover::before { left: 100%; }
+
+    /* ==========================================
+       5. HIỆU ỨNG CUỘN (SCROLL REVEAL)
+       ========================================== */
+    .reveal-hidden { opacity: 0; transform: translateY(60px); filter: blur(5px); transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); will-change: opacity, transform, filter; }
+    .reveal-left { transform: translateX(-80px); }
+    .reveal-right { transform: translateX(80px); }
+    .reveal-scale { transform: scale(0.8); }
+    .reveal-visible { opacity: 1; transform: translate(0) scale(1); filter: blur(0); }
+    
+    .delay-100 { transition-delay: 100ms; } .delay-200 { transition-delay: 200ms; } .delay-300 { transition-delay: 300ms; }
+
+    #back-to-top { opacity: 0; visibility: hidden; transition: all 0.3s; transform: translateY(20px); }
+    #back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    
+    .cyber-slash { position: relative; display: inline-block; padding-left: 10px; }
+    .cyber-slash::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #00f3ff; box-shadow: 0 0 10px #00f3ff; transform: skewX(-15deg); }
+
+    /* Lọc Dự Án */
+    .project-card { transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s; }
+    .project-hidden { opacity: 0; transform: scale(0.8) translateY(30px); filter: grayscale(100%) blur(5px); pointer-events: none; position: absolute; }
+  </style>
+</head>
+
+<body class="relative selection:bg-neon-cyan selection:text-black cursor-none">
+  
+  <!-- ============================================================
+       PRELOADER (JARVIS BOOT)
+       ============================================================ -->
+  <div id="preloader">
+    <div class="max-w-3xl mx-auto w-full">
+      <div class="flex items-center gap-4 mb-8">
+        <i class="fa-solid fa-shield-halved text-neon-cyan text-4xl animate-pulse"></i>
+        <h1 class="font-scifi text-4xl font-bold text-neon-cyan tracking-[0.2em] border-b-2 border-neon-cyan pb-2 w-full uppercase shadow-[0_0_15px_#00f3ff]">JARVIS // Protocol</h1>
+      </div>
+      <div id="terminal" class="terminal-text flex flex-col gap-2"></div>
+    </div>
+  </div>
+
+  <!-- NỀN & CHUỘT -->
+  <div class="cursor-sniper" id="cursor-glow"></div>
+  <div class="cursor-center" id="cursor-dot"></div>
+  <div class="fixed inset-0 bg-grid z-[-2]"></div>
+  <canvas id="heroCanvas" class="fixed inset-0 z-[-1]"></canvas>
+
+  <div id="main-content" class="opacity-0 transition-opacity duration-1000">
+    
+    <!-- ============================================================
+         1. HEADER / NAVBAR
+         ============================================================ -->
+    <header class="fixed top-0 w-full z-50 glass-dark border-b-0 border-b border-neon-cyan/30 shadow-[0_5px_30px_rgba(0,0,0,0.8)] transition-all py-2">
+      <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="relative w-10 h-10 rounded border border-neon-cyan flex items-center justify-center text-neon-cyan shadow-[0_0_10px_#00f3ff,inset_0_0_10px_#00f3ff] group-hover:bg-neon-cyan group-hover:text-black transition-all transform rotate-45">
+            <i class="fa-solid fa-bolt text-lg transform -rotate-45"></i>
+          </div>
+          <div class="flex flex-col">
+            <strong class="font-scifi text-2xl font-bold uppercase tracking-widest text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]">Trí Nguyên</strong>
+            <small class="font-mono text-[10px] text-neon-cyan tracking-[0.2em] uppercase">Security Level 3</small>
+          </div>
+        </a>
+
+        <nav id="navbar" class="hidden lg:flex items-center gap-8">
+          <ul class="flex gap-8 font-scifi text-lg font-bold tracking-[0.1em] text-gray-400">
+            <li><a href="#home" class="nav-link hover:text-neon-cyan hover:drop-shadow-[0_0_8px_#00f3ff] transition-all">HOME</a></li>
+            <li><a href="#about" class="nav-link hover:text-neon-cyan hover:drop-shadow-[0_0_8px_#00f3ff] transition-all">ABOUT</a></li>
+            <li><a href="#goals" class="nav-link hover:text-neon-cyan hover:drop-shadow-[0_0_8px_#00f3ff] transition-all">GOALS</a></li>
+            <li><a href="#skills" class="nav-link hover:text-neon-cyan hover:drop-shadow-[0_0_8px_#00f3ff] transition-all">SKILLS</a></li>
+            <li><a href="#education" class="nav-link hover:text-neon-cyan hover:drop-shadow-[0_0_8px_#00f3ff] transition-all">EDUCATION</a></li>
+            <li><a href="#projects" class="nav-link hover:text-neon-cyan hover:drop-shadow-[0_0_8px_#00f3ff] transition-all">PROJECTS</a></li>
+            <li><a href="#certificates" class="nav-link hover:text-neon-cyan hover:drop-shadow-[0_0_8px_#00f3ff] transition-all">CERTIFICATES</a></li>
+            <li><a href="#contact" class="nav-link hover:text-neon-cyan hover:drop-shadow-[0_0_8px_#00f3ff] transition-all">CONTACT</a></li>
+          </ul>
+        </nav>
+
+        <div class="flex items-center gap-4">
+          <button id="menu-toggle" class="w-10 h-10 rounded border border-neon-cyan text-neon-cyan shadow-[0_0_10px_#00f3ff,inset_0_0_10px_rgba(0,243,255,0.2)] flex flex-col justify-center items-center gap-1 lg:hidden bg-neon-dark">
+            <span class="w-5 h-[2px] bg-current"></span>
+            <span class="w-5 h-[2px] bg-current"></span>
+            <span class="w-5 h-[2px] bg-current"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden lg:hidden glass-dark border-b border-neon-cyan/50 absolute w-full left-0 shadow-[0_20px_40px_rgba(0,0,0,0.9)]">
+        <ul class="flex flex-col p-6 font-scifi text-xl font-bold tracking-widest text-gray-300 gap-4">
+          <li><a href="#home" class="mobile-link block p-3 hover:bg-neon-cyan/20 hover:text-neon-cyan border-l-2 border-transparent hover:border-neon-cyan transition-all">HOME</a></li>
+          <li><a href="#about" class="mobile-link block p-3 hover:bg-neon-cyan/20 hover:text-neon-cyan border-l-2 border-transparent hover:border-neon-cyan transition-all">ABOUT</a></li>
+          <li><a href="#goals" class="mobile-link block p-3 hover:bg-neon-cyan/20 hover:text-neon-cyan border-l-2 border-transparent hover:border-neon-cyan transition-all">GOALS</a></li>
+          <li><a href="#skills" class="mobile-link block p-3 hover:bg-neon-cyan/20 hover:text-neon-cyan border-l-2 border-transparent hover:border-neon-cyan transition-all">SKILLS</a></li>
+          <li><a href="#education" class="mobile-link block p-3 hover:bg-neon-cyan/20 hover:text-neon-cyan border-l-2 border-transparent hover:border-neon-cyan transition-all">EDUCATION</a></li>
+          <li><a href="#projects" class="mobile-link block p-3 hover:bg-neon-cyan/20 hover:text-neon-cyan border-l-2 border-transparent hover:border-neon-cyan transition-all">PROJECTS</a></li>
+          <li><a href="#certificates" class="mobile-link block p-3 hover:bg-neon-cyan/20 hover:text-neon-cyan border-l-2 border-transparent hover:border-neon-cyan transition-all">CERTIFICATES</a></li>
+          <li><a href="#contact" class="mobile-link block p-3 hover:bg-neon-cyan/20 hover:text-neon-cyan border-l-2 border-transparent hover:border-neon-cyan transition-all">CONTACT</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="pt-24">
+      <!-- ============================================================
+           2. BANNER / HERO
+           ============================================================ -->
+      <section id="home" class="min-h-[90vh] flex items-center relative py-12">
+        <div class="absolute right-0 top-1/4 w-96 h-96 bg-neon-cyan opacity-10 rounded-full blur-[150px] mix-blend-screen pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+          
+          <div class="order-2 lg:order-1 flex flex-col items-start space-y-6 reveal-hidden reveal-left">
+            <div class="inline-flex items-center gap-3 px-4 py-2 border border-neon-cyan rounded bg-neon-cyan/5 shadow-[0_0_15px_rgba(0,243,255,0.2)]">
+              <span class="w-3 h-3 rounded-full bg-neon-cyan animate-pulse shadow-[0_0_10px_#00f3ff]"></span>
+              <span class="font-mono text-[11px] font-bold text-neon-cyan tracking-widest uppercase">System Online // Ready</span>
+            </div>
+
+            <h1 class="font-scifi text-5xl md:text-7xl font-black uppercase tracking-wider text-white leading-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] hacker-text" data-value="TRẦN QUANG TRÍ NGUYÊN">
+              Trần Quang Trí <br> <span class="text-neon-cyan text-shadow">Nguyên</span>
+            </h1>
+
+            <p class="font-scifi text-2xl font-bold text-neon-gold tracking-widest uppercase min-h-[35px] drop-shadow-[0_0_10px_rgba(255,183,0,0.6)]">
+              Định hướng: <span id="typing-effect" class="text-white"></span><span class="animate-pulse text-neon-cyan">_</span>
+            </p>
+
+            <p class="font-mono text-sm leading-relaxed text-gray-400 max-w-lg glass-dark p-5 rounded-lg border-l-4 border-l-neon-cyan">
+              Tôi là sinh viên năm 3 ngành Công nghệ thông tin, yêu thích công nghệ và kinh doanh. Tôi dùng dữ liệu và lập trình để biến những ý tưởng thành sản phẩm thực tế.
+            </p>
+
+            <div class="flex flex-wrap gap-5 pt-4">
+              <a href="#projects" class="btn-cyber px-8 py-4 bg-neon-cyan/20 border border-neon-cyan text-neon-cyan font-scifi font-bold tracking-widest text-xl rounded transform hover:scale-105 hover:bg-neon-cyan hover:text-black hover:shadow-[0_0_30px_#00f3ff] transition-all">
+                <i class="fa-solid fa-code-branch mr-2"></i> Khám Phá Dự Án
+              </a>
+              <a href="#contact" class="btn-cyber px-8 py-4 bg-transparent border-2 border-neon-crimson text-neon-crimson font-scifi font-bold tracking-widest text-xl rounded transform hover:scale-105 hover:bg-neon-crimson hover:text-black hover:shadow-[0_0_30px_#ff003c] transition-all">
+                <i class="fa-solid fa-satellite-dish mr-2"></i> Kết Nối
+              </a>
+            </div>
+
+            <div class="flex gap-10 pt-8 mt-4 w-full border-t border-gray-800">
+              <div class="flex flex-col">
+                <strong class="font-scifi text-5xl text-white drop-shadow-[0_0_10px_#fff]">0<span class="count-up" data-count="3">0</span></strong>
+                <span class="font-mono text-xs text-neon-cyan uppercase font-bold tracking-widest mt-1">Dự án</span>
+              </div>
+              <div class="flex flex-col">
+                <strong class="font-scifi text-5xl text-white drop-shadow-[0_0_10px_#fff]">0<span class="count-up" data-count="5">0</span></strong>
+                <span class="font-mono text-xs text-neon-cyan uppercase font-bold tracking-widest mt-1">Kỹ năng</span>
+              </div>
+              <div class="flex flex-col">
+                <strong class="font-scifi text-5xl text-white drop-shadow-[0_0_10px_#fff]">0<span class="count-up" data-count="3">0</span></strong>
+                <span class="font-mono text-xs text-neon-cyan uppercase font-bold tracking-widest mt-1">Năm học</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- AVATAR BANNER (Scanner & 3D Tilt) -->
+          <figure class="order-1 lg:order-2 relative group reveal-hidden reveal-right delay-200 preserve-3d tilt-card">
+            <!-- Vòng tròn nền quay -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110%] aspect-square border-[1px] border-neon-cyan/30 rounded-full animate-spin-slow pointer-events-none"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square border-[1px] border-dashed border-neon-gold/30 rounded-full animate-[spin_15s_linear_infinite_reverse] pointer-events-none"></div>
+            
+            <div class="glare rounded-2xl"></div>
+            <div class="relative rounded-2xl overflow-hidden glass-dark border-2 border-neon-cyan shadow-[0_0_40px_rgba(0,243,255,0.2)] p-2 pop-out">
+              <div class="scanner-line"></div>
+              <img src="images/banner.jpg" alt="Ảnh phong cảnh du lịch nằm ngang" class="w-full h-auto object-cover aspect-[16/10] rounded-xl filter contrast-125 saturate-50 group-hover:saturate-100 transition-all duration-700">
+              
+              <figcaption class="absolute bottom-6 left-6 glass-dark p-4 rounded-xl flex items-center gap-4 shadow-[0_0_20px_#000] border border-neon-cyan/50 pop-out-high">
+                <div class="w-12 h-12 bg-neon-cyan/20 text-neon-cyan rounded flex items-center justify-center text-2xl border border-neon-cyan shadow-[inset_0_0_10px_#00f3ff]">
+                  <i class="fa-solid fa-earth-asia"></i>
+                </div>
+                <div>
+                  <strong class="block font-scifi text-xl text-white tracking-widest uppercase">Công nghệ & Kinh doanh</strong>
+                  <small class="block font-mono text-xs text-neon-cyan font-bold tracking-widest mt-1">Khám phá thế giới</small>
+                </div>
+              </figcaption>
+            </div>
+          </figure>
+
+        </div>
+      </section>
+
+      <!-- ============================================================
+           3. ABOUT ME
+           ============================================================ -->
+      <section id="about" class="py-28 relative overflow-hidden bg-neon-panel/40 border-y border-neon-cyan/10">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          
+          <!-- AVATAR (Tilt Card Holographic) -->
+          <div class="lg:col-span-5 relative group reveal-hidden reveal-left preserve-3d tilt-card">
+            <div class="glare rounded-3xl"></div>
+            <div class="relative glass-dark p-3 rounded-3xl shadow-[0_0_30px_rgba(0,0,0,1)] z-10 border border-neon-cyan/40">
+              <div class="hud-corner hud-tl"></div><div class="hud-corner hud-tr"></div>
+              <div class="hud-corner hud-bl"></div><div class="hud-corner hud-br"></div>
+              <div class="scanner-line"></div>
+              
+              <img src="images/avatar.jpg" alt="Ảnh đại diện cá nhân" class="w-full aspect-[2/3] object-cover rounded-2xl filter sepia-[0.3] hue-rotate-180 contrast-125 group-hover:filter-none transition-all duration-700 pop-out">
+              
+              <div class="absolute -bottom-6 -right-6 glass-dark border border-neon-crimson p-5 rounded-2xl text-white shadow-[0_0_30px_rgba(255,0,60,0.5)] transform rotate-3 pop-out-high">
+                <span class="block font-mono text-[10px] uppercase text-gray-400 font-bold tracking-widest mb-1">Căn Cứ Hoạt Động</span>
+                <strong class="block font-scifi text-4xl font-bold tracking-widest text-neon-crimson drop-shadow-[0_0_10px_#ff003c]">UTH</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 flex flex-col space-y-8 reveal-hidden reveal-right delay-200">
+            <div>
+              <p class="font-mono text-neon-cyan font-bold text-[11px] tracking-[0.2em] uppercase cyber-slash mb-3">01 // Dossier</p>
+              <h2 class="font-scifi text-5xl md:text-6xl font-bold uppercase tracking-wider text-white mt-4 hacker-text" data-value="HỒ SƠ ĐIỆP VIÊN">Hồ sơ điệp viên</h2>
+            </div>
+
+            <div class="glass-dark border-l-4 border-neon-cyan p-8 font-mono text-sm leading-relaxed text-gray-300 space-y-4 rounded-r-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <div class="flex justify-between border-b border-gray-800 pb-3 hover:text-white hover:border-neon-cyan transition-colors">
+                <span class="text-gray-500 font-bold uppercase tracking-widest">Định danh:</span> <strong class="text-neon-cyan text-lg">Trần Quang Trí Nguyên</strong>
+              </div>
+              <div class="flex justify-between border-b border-gray-800 pb-3 hover:text-white hover:border-neon-cyan transition-colors">
+                <span class="text-gray-500 font-bold uppercase tracking-widest">Chuyên ngành:</span> <strong class="text-white">Công nghệ thông tin</strong>
+              </div>
+              <div class="flex justify-between border-b border-gray-800 pb-3 hover:text-white hover:border-neon-cyan transition-colors">
+                <span class="text-gray-500 font-bold uppercase tracking-widest">Tổ chức:</span> <strong class="text-white text-right">ĐH GTVT TP.HCM (UTH)</strong>
+              </div>
+              <div class="flex justify-between border-b border-gray-800 pb-3 hover:text-white hover:border-neon-cyan transition-colors">
+                <span class="text-gray-500 font-bold uppercase tracking-widest">Cấp bậc:</span> <strong class="text-neon-gold drop-shadow-[0_0_5px_#ffb700]">Sinh viên năm 3</strong>
+              </div>
+              <div class="flex justify-between pt-1">
+                <span class="text-gray-500 font-bold uppercase tracking-widest">Sứ mệnh:</span> <strong class="text-neon-crimson drop-shadow-[0_0_5px_#ff003c] text-lg">Khoa học máy tính & AI</strong>
+              </div>
+            </div>
+
+            <p class="font-sans text-base leading-relaxed text-gray-400 glass-dark p-6 rounded-xl border border-gray-800">
+              Tôi là sinh viên năm ba ngành Công nghệ thông tin tại UTH, luôn chủ động trong việc tự học và tìm tòi các giải pháp công nghệ mới. Trong học tập và làm đồ án, tôi tập trung vào việc phát triển các ứng dụng phần mềm.
+              Ngoài giờ học, tôi thích chơi thể thao để rèn luyện sức khỏe, xả stress, cũng như thường xuyên la cà quán cà phê và đi dạo phố để nạp lại năng lượng, tìm kiếm cảm hứng mới.
+            </p>
+
+            <a href="#contact" class="inline-flex items-center gap-3 font-scifi text-2xl font-bold text-neon-cyan hover:text-white transition-colors group w-max border-b border-neon-cyan pb-1">
+              Khởi tạo liên kết <i class="fa-solid fa-satellite-dish transform group-hover:scale-125 transition-transform"></i>
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============================================================
+           4. CAREER GOALS
+           ============================================================ -->
+      <section id="goals" class="py-28 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+          
+          <header class="mb-16 reveal-hidden">
+            <p class="font-mono text-neon-cyan font-bold text-[11px] tracking-[0.2em] uppercase cyber-slash mb-3">02 // Targets</p>
+            <h2 class="font-scifi text-5xl font-bold uppercase tracking-wider text-white mt-4 hacker-text" data-value="MỤC TIÊU CHIẾN LƯỢC">Mục tiêu chiến lược</h2>
+            <p class="font-mono text-sm text-gray-400 mt-3 border-l-2 border-gray-700 pl-3">
+              Kế hoạch tác chiến: Nắm vững nền tảng, thực thi dự án, bảo vệ căn cứ ổn định.
+            </p>
+          </header>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10 preserve-3d">
+            
+            <article class="tilt-card reveal-hidden reveal-scale delay-100 glass-dark border-t-[6px] border-neon-cyan p-10 rounded-2xl relative group shadow-[0_20px_40px_rgba(0,0,0,0.8)] cursor-default">
+              <div class="glare rounded-2xl"></div>
+              <div class="hud-corner hud-tl"></div><div class="hud-corner hud-br"></div>
+              <div class="w-20 h-20 bg-neon-cyan/10 border border-neon-cyan text-neon-cyan rounded-2xl flex items-center justify-center text-4xl mb-8 group-hover:scale-110 transition-transform group-hover:bg-neon-cyan group-hover:text-black shadow-[0_0_20px_rgba(0,243,255,0.2)] pop-out-high">
+                <i class="fa-solid fa-crosshairs"></i>
+              </div>
+              <h3 class="font-scifi text-3xl font-bold text-white mb-4 pop-out group-hover:text-neon-cyan transition-colors">Giai Đoạn Hiện Tại</h3>
+              <p class="font-sans text-sm text-gray-400 leading-relaxed pop-out">
+                Hoàn thành tốt chương trình năm ba, củng cố nền tảng Python, SQL và các kiến thức cốt lõi Khoa học máy tính.
+              </p>
+            </article>
+
+            <article class="tilt-card reveal-hidden reveal-scale delay-200 glass-dark border-t-[6px] border-neon-gold p-10 rounded-2xl relative group shadow-[0_20px_40px_rgba(0,0,0,0.8)] cursor-default">
+              <div class="glare rounded-2xl"></div>
+              <div class="hud-corner hud-tl border-neon-gold"></div><div class="hud-corner hud-br border-neon-gold"></div>
+              <div class="w-20 h-20 bg-neon-gold/10 border border-neon-gold text-neon-gold rounded-2xl flex items-center justify-center text-4xl mb-8 group-hover:scale-110 transition-transform group-hover:bg-neon-gold group-hover:text-black shadow-[0_0_20px_rgba(255,183,0,0.2)] pop-out-high">
+                <i class="fa-solid fa-microchip"></i>
+              </div>
+              <h3 class="font-scifi text-3xl font-bold text-white mb-4 pop-out group-hover:text-neon-gold transition-colors">Vũ Khí Nâng Cấp</h3>
+              <p class="font-sans text-sm text-gray-400 leading-relaxed pop-out">
+                Cải thiện nhiều thuật toán Machine Learning và ứng dụng vào các dự án mô phỏng môi trường thực chiến.
+              </p>
+            </article>
+
+            <article class="tilt-card reveal-hidden reveal-scale delay-300 glass-dark border-t-[6px] border-neon-crimson p-10 rounded-2xl relative group shadow-[0_20px_40px_rgba(0,0,0,0.8)] cursor-default">
+              <div class="glare rounded-2xl"></div>
+              <div class="hud-corner hud-tl border-neon-crimson"></div><div class="hud-corner hud-br border-neon-crimson"></div>
+              <div class="w-20 h-20 bg-neon-crimson/10 border border-neon-crimson text-neon-crimson rounded-2xl flex items-center justify-center text-4xl mb-8 group-hover:scale-110 transition-transform group-hover:bg-neon-crimson group-hover:text-black shadow-[0_0_20px_rgba(255,0,60,0.2)] pop-out-high">
+                <i class="fa-solid fa-meteor"></i>
+              </div>
+              <h3 class="font-scifi text-3xl font-bold text-white mb-4 pop-out group-hover:text-neon-crimson transition-colors">Tọa Độ Tương Lai</h3>
+              <p class="font-sans text-sm text-gray-400 leading-relaxed pop-out">
+                Thiết lập công việc ổn định. Kế hoạch B: Bổ sung văn bằng 2 để mở rộng phạm vi tấn công nghệ nghiệp.
+              </p>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           5. SKILLS
+           ============================================================ -->
+      <section id="skills" class="py-28 relative overflow-hidden bg-neon-panel/40 border-y border-neon-cyan/10">
+        <div class="max-w-7xl mx-auto px-4">
+          
+          <header class="mb-16 text-center reveal-hidden">
+            <p class="font-mono text-neon-cyan font-bold text-[11px] tracking-[0.2em] uppercase cyber-slash mx-auto w-max mb-3">03 // Arsenal</p>
+            <h2 class="font-scifi text-5xl font-bold uppercase tracking-wider text-white mt-4 hacker-text" data-value="KHO VŨ KHÍ KỸ NĂNG">Kho vũ khí kỹ năng</h2>
+            <p class="font-mono text-sm text-gray-400 mt-3">
+              Chỉ số sức mạnh được hiệu chuẩn ở thời điểm hiện tại.
+            </p>
+          </header>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-12 max-w-5xl mx-auto glass-dark p-12 rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,1)] relative border border-gray-800">
+            <div class="hud-corner hud-tl"></div><div class="hud-corner hud-tr"></div>
+            <div class="hud-corner hud-bl"></div><div class="hud-corner hud-br"></div>
+
+            <!-- Skills Data -->
+            <div class="space-y-4 reveal-hidden reveal-left delay-100 group">
+              <div class="flex justify-between font-scifi font-bold text-2xl">
+                <span class="text-white flex items-center gap-3"><i class="fa-solid fa-database text-neon-cyan"></i> SQL</span>
+                <span class="text-neon-cyan drop-shadow-[0_0_5px_#00f3ff]">85%</span>
+              </div>
+              <div class="w-full bg-gray-900 h-4 rounded-full overflow-hidden shadow-[inset_0_0_10px_#000] border border-gray-800">
+                <div class="bg-gradient-to-r from-neon-blue to-neon-cyan h-full rounded-full shadow-[0_0_15px_#00f3ff] relative overflow-hidden group-hover:scale-y-110 transition-transform" style="width: 85%">
+                  <div class="absolute top-0 left-0 w-full h-full bg-white/20 -skew-x-[45deg] animate-[scan_2s_infinite]"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4 reveal-hidden reveal-right delay-200 group">
+              <div class="flex justify-between font-scifi font-bold text-2xl">
+                <span class="text-white flex items-center gap-3"><i class="fa-brands fa-python text-neon-gold"></i> Python</span>
+                <span class="text-neon-gold drop-shadow-[0_0_5px_#ffb700]">80%</span>
+              </div>
+              <div class="w-full bg-gray-900 h-4 rounded-full overflow-hidden shadow-[inset_0_0_10px_#000] border border-gray-800">
+                <div class="bg-gradient-to-r from-orange-600 to-neon-gold h-full rounded-full shadow-[0_0_15px_#ffb700] relative overflow-hidden group-hover:scale-y-110 transition-transform" style="width: 80%">
+                  <div class="absolute top-0 left-0 w-full h-full bg-white/20 -skew-x-[45deg] animate-[scan_2s_infinite]"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4 reveal-hidden reveal-left delay-300 group">
+              <div class="flex justify-between font-scifi font-bold text-2xl">
+                <span class="text-white flex items-center gap-3"><i class="fa-brands fa-html5 text-neon-crimson"></i> HTML</span>
+                <span class="text-neon-crimson drop-shadow-[0_0_5px_#ff003c]">70%</span>
+              </div>
+              <div class="w-full bg-gray-900 h-4 rounded-full overflow-hidden shadow-[inset_0_0_10px_#000] border border-gray-800">
+                <div class="bg-gradient-to-r from-red-800 to-neon-crimson h-full rounded-full shadow-[0_0_15px_#ff003c] relative overflow-hidden group-hover:scale-y-110 transition-transform" style="width: 70%">
+                  <div class="absolute top-0 left-0 w-full h-full bg-white/20 -skew-x-[45deg] animate-[scan_2s_infinite]"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4 reveal-hidden reveal-right delay-400 group">
+              <div class="flex justify-between font-scifi font-bold text-2xl">
+                <span class="text-white flex items-center gap-3"><i class="fa-brands fa-css3-alt text-neon-blue"></i> CSS</span>
+                <span class="text-neon-cyan drop-shadow-[0_0_5px_#00f3ff]">70%</span>
+              </div>
+              <div class="w-full bg-gray-900 h-4 rounded-full overflow-hidden shadow-[inset_0_0_10px_#000] border border-gray-800">
+                <div class="bg-gradient-to-r from-blue-800 to-neon-cyan h-full rounded-full shadow-[0_0_15px_#00f3ff] relative overflow-hidden group-hover:scale-y-110 transition-transform" style="width: 70%">
+                  <div class="absolute top-0 left-0 w-full h-full bg-white/20 -skew-x-[45deg] animate-[scan_2s_infinite]"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4 reveal-hidden reveal-left delay-500 md:col-span-2 md:w-2/3 md:mx-auto group">
+              <div class="flex justify-between font-scifi font-bold text-2xl">
+                <span class="text-white flex items-center gap-3"><i class="fa-brands fa-js text-neon-gold"></i> JavaScript</span>
+                <span class="text-neon-gold drop-shadow-[0_0_5px_#ffb700]">60%</span>
+              </div>
+              <div class="w-full bg-gray-900 h-4 rounded-full overflow-hidden shadow-[inset_0_0_10px_#000] border border-gray-800">
+                <div class="bg-gradient-to-r from-yellow-700 to-neon-gold h-full rounded-full shadow-[0_0_15px_#ffb700] relative overflow-hidden group-hover:scale-y-110 transition-transform" style="width: 60%">
+                  <div class="absolute top-0 left-0 w-full h-full bg-white/20 -skew-x-[45deg] animate-[scan_2s_infinite]"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ul class="flex flex-wrap justify-center gap-6 mt-16 reveal-hidden" aria-label="Năng lực bổ sung">
+            <li class="px-8 py-3 bg-neon-cyan/5 border border-neon-cyan shadow-[0_0_10px_rgba(0,243,255,0.2)] text-neon-cyan font-mono font-bold text-sm uppercase rounded hover:bg-neon-cyan hover:text-black hover:shadow-[0_0_20px_#00f3ff] transition-all cursor-pointer transform -skew-x-12">Self-learning</li>
+            <li class="px-8 py-3 bg-neon-cyan/5 border border-neon-cyan shadow-[0_0_10px_rgba(0,243,255,0.2)] text-neon-cyan font-mono font-bold text-sm uppercase rounded hover:bg-neon-cyan hover:text-black hover:shadow-[0_0_20px_#00f3ff] transition-all cursor-pointer transform -skew-x-12">Problem solving</li>
+            <li class="px-8 py-3 bg-neon-cyan/5 border border-neon-cyan shadow-[0_0_10px_rgba(0,243,255,0.2)] text-neon-cyan font-mono font-bold text-sm uppercase rounded hover:bg-neon-cyan hover:text-black hover:shadow-[0_0_20px_#00f3ff] transition-all cursor-pointer transform -skew-x-12">Responsibility</li>
+          </ul>
+
+        </div>
+      </section>
+
+      <!-- ============================================================
+           6. EDUCATION & ACTIVITIES
+           ============================================================ -->
+      <section id="education" class="py-28 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          <div class="reveal-hidden reveal-left">
+            <p class="font-mono text-neon-cyan font-bold text-[11px] tracking-[0.2em] uppercase cyber-slash mb-3">04 // Academy</p>
+            <h2 class="font-scifi text-5xl font-bold uppercase tracking-wider text-white mt-4 mb-12 hacker-text" data-value="HỌC VẤN & HOẠT ĐỘNG">
+              Học vấn & hoạt động
+            </h2>
+
+            <div class="relative pl-10 border-l-4 border-neon-cyan mb-14 glass-dark p-8 rounded-r-3xl shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+              <div class="absolute -left-[14px] top-8 w-6 h-6 bg-neon-cyan border-4 border-[#030712] rounded-full shadow-[0_0_15px_#00f3ff] animate-pulse"></div>
+              <h3 class="font-scifi text-3xl font-bold text-white">Đại học Giao thông vận tải TP. Hồ Chí Minh (UTH)</h3>
+              <p class="font-mono text-sm text-neon-gold font-bold mt-2 mb-4 tracking-widest uppercase">Công nghệ thông tin &middot; Sinh viên năm 3</p>
+              <p class="font-sans text-base text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
+                Huấn luyện các kiến thức nền tảng của ngành, định hướng chuyên sâu về Khoa học dữ liệu và AI. Thực chiến qua các dự án web, Machine Learning và phân tích dữ liệu SQL.
+              </p>
+            </div>
+
+            <h3 class="font-scifi text-2xl font-bold text-white mb-6 uppercase flex items-center gap-4 tracking-widest border-b border-gray-800 pb-4">
+              <i class="fa-solid fa-list-check text-black bg-neon-cyan p-2 rounded shadow-[0_0_10px_#00f3ff]"></i> Nhật ký nhiệm vụ
+            </h3>
+            <ul class="space-y-5 font-mono text-sm">
+              <li class="flex items-start gap-4 hover:translate-x-3 transition-transform glass-dark p-4 rounded-xl border border-gray-800 hover:border-neon-cyan">
+                <span class="w-6 h-6 flex-shrink-0 bg-neon-cyan text-black rounded flex items-center justify-center text-xs shadow-[0_0_10px_#00f3ff]"><i class="fa-solid fa-check"></i></span>
+                <span class="font-bold text-gray-200 mt-0.5">Dự án: Hệ thống quản lí chi tiêu</span>
+              </li>
+              <li class="flex items-start gap-4 hover:translate-x-3 transition-transform glass-dark p-4 rounded-xl border border-gray-800 hover:border-neon-cyan">
+                <span class="w-6 h-6 flex-shrink-0 bg-neon-cyan text-black rounded flex items-center justify-center text-xs shadow-[0_0_10px_#00f3ff]"><i class="fa-solid fa-check"></i></span>
+                <span class="font-bold text-gray-200 mt-0.5">Dự án: Hệ thống quản lí sinh viên</span>
+              </li>
+              <li class="flex items-start gap-4 hover:translate-x-3 transition-transform glass-dark p-4 rounded-xl border border-gray-800 hover:border-neon-cyan">
+                <span class="w-6 h-6 flex-shrink-0 bg-neon-cyan text-black rounded flex items-center justify-center text-xs shadow-[0_0_10px_#00f3ff]"><i class="fa-solid fa-check"></i></span>
+                <span class="font-bold text-gray-200 mt-0.5">Dự án: Thuật toán & Trực quan hóa</span>
+              </li>
+              <li class="flex items-start gap-4 bg-gray-900 p-4 rounded-xl border border-gray-800 opacity-60">
+                <span class="w-6 h-6 flex-shrink-0 bg-gray-700 text-white rounded flex items-center justify-center text-xs"><i class="fa-solid fa-clock"></i></span>
+                <span class="font-sans text-gray-400 italic mt-0.5">Câu lạc bộ, cuộc thi, thực tập &ndash; Chưa có</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="relative group reveal-hidden reveal-right delay-200 tilt-card preserve-3d">
+            <div class="glare rounded-3xl"></div>
+            <div class="absolute inset-0 bg-gradient-to-tr from-neon-blue to-neon-cyan rounded-3xl transform -rotate-3 transition-transform duration-500 group-hover:rotate-0 opacity-30 blur-2xl z-[-1]"></div>
+            
+            <div class="relative border-2 border-neon-blue rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,85,255,0.4)] bg-[#030712] pop-out">
+              <div class="scanner-line"></div>
+              <img src="images/edu-library.jpg" alt="Thư viện học thuật" class="w-full h-auto object-cover aspect-[3/2] filter brightness-75 contrast-125 sepia-[0.2] hue-rotate-180 transform transition-all duration-700 group-hover:scale-110 group-hover:brightness-100">
+            </div>
+            
+            <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 glass-dark border border-neon-cyan p-5 rounded-2xl text-center w-max shadow-[0_20px_40px_#000] pop-out-high">
+              <strong class="block font-scifi text-2xl text-white tracking-[0.2em] uppercase">Mở Rộng Dữ Liệu</strong>
+              <span class="block font-mono text-xs text-neon-cyan mt-2 font-bold uppercase">Nạp kiến thức hệ thống liên tục.</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============================================================
+           7. PROJECTS
+           ============================================================ -->
+      <section id="projects" class="py-28 relative overflow-hidden bg-neon-panel/40 border-y border-neon-cyan/10">
+        <div class="max-w-7xl mx-auto px-4">
+          
+          <header class="mb-14 reveal-hidden">
+            <p class="font-mono text-neon-cyan font-bold text-[11px] tracking-[0.2em] uppercase cyber-slash mb-3">05 // Operations</p>
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mt-4">
+              <div>
+                <h2 class="font-scifi text-5xl font-bold uppercase tracking-wider text-white hacker-text" data-value="CHIẾN DỊCH THỰC THI">
+                  Chiến dịch thực thi
+                </h2>
+                <p class="font-mono text-sm text-gray-400 mt-4 border-l-2 border-neon-cyan pl-3">Dữ liệu lưu trữ các dự án đã được hoàn thành & triển khai.</p>
+              </div>
+              
+              <!-- Filter Cyber Buttons -->
+              <div class="flex gap-3 glass-dark p-2 rounded-xl border border-gray-800">
+                <button class="filter-btn active px-6 py-2 rounded-lg font-mono text-xs font-bold uppercase tracking-widest transition-all bg-neon-cyan text-black shadow-[0_0_15px_#00f3ff]" data-filter="all">Tất Cả</button>
+                <button class="filter-btn px-6 py-2 rounded-lg font-mono text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-neon-cyan hover:bg-neon-cyan/10 transition-all" data-filter="web">Web App</button>
+                <button class="filter-btn px-6 py-2 rounded-lg font-mono text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-neon-cyan hover:bg-neon-cyan/10 transition-all" data-filter="algo">Core Thuật Toán</button>
+              </div>
+            </div>
+          </header>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 preserve-3d" id="project-grid">
+            
+            <!-- P1 -->
+            <article class="project-card tilt-card reveal-hidden reveal-scale delay-100 glass-dark rounded-3xl overflow-hidden group border border-gray-800 hover:border-neon-cyan shadow-2xl cursor-pointer" data-category="web">
+              <div class="glare rounded-3xl"></div>
+              <figure class="relative h-60 overflow-hidden bg-black border-b border-gray-800 group-hover:border-neon-cyan transition-colors">
+                <img src="images/project-1.jpg" alt="Hệ thống quản lí chi tiêu" class="w-full h-full object-cover filter contrast-125 opacity-70 group-hover:opacity-100 transform group-hover:scale-110 transition-all duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1c] to-transparent"></div>
+                <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 z-10 pop-out-high">
+                  <span class="text-black bg-neon-cyan px-4 py-2 rounded font-mono font-bold text-xs uppercase shadow-[0_0_10px_#00f3ff]">Truy Cập Dữ Liệu <i class="fa-solid fa-arrow-right ml-2"></i></span>
+                </div>
+              </figure>
+              <div class="p-8 flex flex-col h-[calc(100%-15rem)]">
+                <h3 class="font-scifi text-2xl font-bold text-white mb-3 group-hover:text-neon-cyan transition-colors pop-out">Hệ thống quản lí chi tiêu</h3>
+                <p class="font-sans text-sm text-gray-400 leading-relaxed flex-grow pop-out">
+                  Hệ thống phân loại thu chi, biểu đồ trực quan và lập ngân sách thông minh. Phân quyền đa người dùng từ khách hàng, chủ sở hữu đến admin tổng.
+                </p>
+                <ul class="flex flex-wrap gap-2 mt-6 pop-out">
+                  <li class="text-[10px] font-mono px-3 py-1 bg-neon-cyan/10 border border-neon-cyan/50 text-neon-cyan rounded">HTML/CSS/JS</li>
+                  <li class="text-[10px] font-mono px-3 py-1 bg-neon-cyan/10 border border-neon-cyan/50 text-neon-cyan rounded">Python</li>
+                  <li class="text-[10px] font-mono px-3 py-1 bg-neon-cyan/10 border border-neon-cyan/50 text-neon-cyan rounded">MySQL</li>
+                  <li class="text-[10px] font-mono px-3 py-1 bg-neon-cyan/10 border border-neon-cyan/50 text-neon-cyan rounded">Node.js</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- P2 -->
+            <article class="project-card tilt-card reveal-hidden reveal-scale delay-200 glass-dark rounded-3xl overflow-hidden group border border-gray-800 hover:border-neon-gold shadow-2xl cursor-pointer" data-category="web">
+              <div class="glare rounded-3xl"></div>
+              <figure class="relative h-60 overflow-hidden bg-black border-b border-gray-800 group-hover:border-neon-gold transition-colors">
+                <img src="images/project-2.jpg" alt="Hệ thống quản lí sinh viên" class="w-full h-full object-cover filter contrast-125 opacity-70 group-hover:opacity-100 transform group-hover:scale-110 transition-all duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1c] to-transparent"></div>
+                <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 z-10 pop-out-high">
+                  <span class="text-black bg-neon-gold px-4 py-2 rounded font-mono font-bold text-xs uppercase shadow-[0_0_10px_#ffb700]">Truy Cập Dữ Liệu <i class="fa-solid fa-arrow-right ml-2"></i></span>
+                </div>
+              </figure>
+              <div class="p-8 flex flex-col h-[calc(100%-15rem)]">
+                <h3 class="font-scifi text-2xl font-bold text-white mb-3 group-hover:text-neon-gold transition-colors pop-out">Hệ thống quản lí sinh viên</h3>
+                <p class="font-sans text-sm text-gray-400 leading-relaxed flex-grow pop-out">
+                  Mô phỏng lõi hệ thống đại học: quản lý sinh viên, tính điểm trung bình (GPA), thuật toán xử lý đăng ký môn học tránh trùng lặp tín chỉ.
+                </p>
+                <ul class="flex flex-wrap gap-2 mt-6 pop-out">
+                  <li class="text-[10px] font-mono px-3 py-1 bg-neon-gold/10 border border-neon-gold/50 text-neon-gold rounded">Python</li>
+                  <li class="text-[10px] font-mono px-3 py-1 bg-neon-gold/10 border border-neon-gold/50 text-neon-gold rounded">HTML/CSS</li>
+                  <li class="text-[10px] font-mono px-3 py-1 bg-neon-gold/10 border border-neon-gold/50 text-neon-gold rounded">Node.js</li>
+                  <li class="text-[10px] font-mono px-3 py-1 bg-neon-gold/10 border border-neon-gold/50 text-neon-gold rounded">MySQL</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- P3 -->
+            <article class="project-card tilt-card reveal-hidden reveal-scale delay-300 glass-dark rounded-3xl overflow-hidden group border border-gray-800 hover:border-neon-crimson shadow-2xl cursor-pointer" data-category="algo">
+              <div class="glare rounded-3xl"></div>
+              <figure class="relative h-60 overflow-hidden bg-black border-b border-gray-800 group-hover:border-neon-crimson transition-colors">
+                <img src="images/project-3.jpg" alt="Thuật toán & Trực quan hóa" class="w-full h-full object-cover filter contrast-125 opacity-70 group-hover:opacity-100 transform group-hover:scale-110 transition-all duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1c] to-transparent"></div>
+                <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 z-10 pop-out-high">
+                  <span class="text-white bg-neon-crimson px-4 py-2 rounded font-mono font-bold text-xs uppercase shadow-[0_0_10px_#ff003c]">Truy Cập Dữ Liệu <i class="fa-solid fa-arrow-right ml-2"></i></span>
+                </div>
+              </figure>
+              <div class="p-8 flex flex-col h-[calc(100%-15rem)]">
+                <h3 class="font-scifi text-2xl font-bold text-white mb-3 group-hover:text-neon-crimson transition-colors pop-out">Thuật toán & Trực quan hóa</h3>
+                <p class="font-sans text-sm text-gray-400 leading-relaxed flex-grow pop-out">
+                  Engine mô phỏng đồ họa động các thuật toán cốt lõi (Quick/Merge Sort, Dijkstra/A*, B-Tree, Heap), giúp ánh xạ tư duy xử lý luồng dữ liệu.
+                </p>
+                <ul class="flex flex-wrap gap-2 mt-6 pop-out">
+                  <li class="text-[10px] font-mono px-3 py-1 bg-neon-crimson/10 border border-neon-crimson/50 text-neon-crimson rounded">Python</li>
+                  <li class="text-[10px] font-mono px-3 py-1 bg-neon-crimson/10 border border-neon-crimson/50 text-neon-crimson rounded">HTML/CSS</li>
+                  <li class="text-[10px] font-mono px-3 py-1 bg-neon-crimson/10 border border-neon-crimson/50 text-neon-crimson rounded">JavaScript</li>
+                </ul>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           8. CERTIFICATES & INTERESTS
+           ============================================================ -->
+      <section id="certificates" class="py-28 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+          
+          <header class="mb-16 text-center reveal-hidden">
+            <p class="font-mono text-neon-cyan font-bold text-[11px] tracking-[0.2em] uppercase cyber-slash mx-auto w-max mb-3">06 // Badges</p>
+            <h2 class="font-scifi text-5xl font-bold uppercase tracking-wider text-white mt-4 hacker-text" data-value="CHỨNG CHỈ & SỞ THÍCH">Chứng chỉ & Sở thích</h2>
+            <p class="font-mono text-sm text-gray-400 mt-3">
+              Khu vực cập nhật thành tựu và module giải trí cá nhân.
+            </p>
+          </header>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10 preserve-3d">
+            
+            <article class="tilt-card reveal-hidden reveal-left delay-100 p-10 glass-dark rounded-3xl border-l-[6px] border-l-neon-cyan shadow-2xl cursor-default">
+              <div class="glare rounded-3xl"></div>
+              <h3 class="flex items-center gap-5 font-scifi text-3xl font-bold text-white mb-8 pop-out">
+                <div class="w-14 h-14 bg-neon-cyan/10 border border-neon-cyan text-neon-cyan rounded-xl flex items-center justify-center text-2xl shadow-[0_0_15px_rgba(0,243,255,0.3)]"><i class="fa-solid fa-certificate"></i></div>
+                Chứng chỉ
+              </h3>
+              <ul class="font-mono text-sm space-y-5 pop-out">
+                <li class="flex justify-between items-center border-b border-gray-800 pb-3">
+                  <span class="text-gray-300 font-bold tracking-widest uppercase">Chứng chỉ</span>
+                  <em class="text-[10px] px-3 py-1 bg-gray-800 text-gray-400 rounded border border-gray-600 not-italic uppercase font-bold">Chưa có</em>
+                </li>
+              </ul>
+            </article>
+
+            <article class="tilt-card reveal-hidden reveal-scale delay-200 p-10 glass-dark rounded-3xl border-l-[6px] border-l-neon-gold shadow-2xl cursor-default">
+              <div class="glare rounded-3xl"></div>
+              <h3 class="flex items-center gap-5 font-scifi text-3xl font-bold text-white mb-8 pop-out">
+                <div class="w-14 h-14 bg-neon-gold/10 border border-neon-gold text-neon-gold rounded-xl flex items-center justify-center text-2xl shadow-[0_0_15px_rgba(255,183,0,0.3)]"><i class="fa-solid fa-trophy"></i></div>
+                Giải thưởng
+              </h3>
+              <ul class="font-mono text-sm space-y-5 pop-out">
+                <li class="flex justify-between items-center border-b border-gray-800 pb-3">
+                  <span class="text-gray-300 font-bold tracking-widest uppercase">Giải thưởng</span>
+                  <em class="text-[10px] px-3 py-1 bg-gray-800 text-gray-400 rounded border border-gray-600 not-italic uppercase font-bold">Chưa có</em>
+                </li>
+              </ul>
+            </article>
+
+            <article class="tilt-card reveal-hidden reveal-right delay-300 p-10 glass-dark rounded-3xl border-l-[6px] border-l-neon-crimson shadow-2xl cursor-default">
+              <div class="glare rounded-3xl"></div>
+              <h3 class="flex items-center gap-5 font-scifi text-3xl font-bold text-white mb-8 pop-out">
+                <div class="w-14 h-14 bg-neon-crimson/10 border border-neon-crimson text-neon-crimson rounded-xl flex items-center justify-center text-2xl shadow-[0_0_15px_rgba(255,0,60,0.3)]"><i class="fa-solid fa-gamepad"></i></div>
+                Sở thích
+              </h3>
+              <ul class="font-mono text-sm space-y-5 pop-out">
+                <li class="flex justify-between items-center border-b border-gray-800 pb-3 hover:text-neon-crimson hover:border-neon-crimson transition-colors">
+                  <span class="text-gray-300 font-bold tracking-widest uppercase">Du lịch</span>
+                  <em class="text-[10px] px-3 py-1 bg-neon-crimson/20 text-neon-crimson rounded border border-neon-crimson/50 not-italic uppercase font-bold shadow-[0_0_10px_rgba(255,0,60,0.4)]">Kích hoạt</em>
+                </li>
+                <li class="flex justify-between items-center border-b border-gray-800 pb-3 hover:text-neon-crimson hover:border-neon-crimson transition-colors">
+                  <span class="text-gray-300 font-bold tracking-widest uppercase">Cà phê</span>
+                  <em class="text-[10px] px-3 py-1 bg-neon-crimson/20 text-neon-crimson rounded border border-neon-crimson/50 not-italic uppercase font-bold shadow-[0_0_10px_rgba(255,0,60,0.4)]">Kích hoạt</em>
+                </li>
+              </ul>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           9. CONTACT
+           ============================================================ -->
+      <section id="contact" class="py-28 relative overflow-hidden bg-neon-panel/40 border-t border-neon-cyan/10">
+        <div class="absolute left-0 bottom-0 w-[500px] h-[500px] bg-neon-blue opacity-10 rounded-full blur-[150px] mix-blend-screen pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start relative z-10">
+          
+          <div class="lg:col-span-5 reveal-hidden reveal-left">
+            <p class="font-mono text-neon-cyan font-bold text-[11px] tracking-[0.2em] uppercase cyber-slash mb-3">07 // Transmission</p>
+            <h2 class="font-scifi text-5xl font-bold uppercase tracking-wider text-white mt-4 mb-6 hacker-text" data-value="TẦN SỐ LIÊN LẠC">
+              Tần số liên lạc
+            </h2>
+            <p class="font-sans text-base text-gray-400 mb-10 glass-dark p-5 rounded-xl border border-gray-800">
+              Kênh truyền tải dữ liệu luôn mở. Gửi thông điệp mã hóa qua form bảo mật hoặc ping trực tiếp tới địa chỉ hệ thống.
+            </p>
+
+            <ul class="space-y-6">
+              <li class="flex items-center gap-6 glass-dark p-6 rounded-2xl group hover:border-neon-cyan hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] transition-all">
+                <div class="w-16 h-16 bg-neon-cyan/10 border border-neon-cyan text-neon-cyan rounded-xl flex items-center justify-center text-3xl group-hover:bg-neon-cyan group-hover:text-black transition-all shadow-[0_0_15px_rgba(0,243,255,0.3)]">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <div>
+                  <small class="block font-mono text-[11px] text-gray-500 uppercase font-bold tracking-widest mb-1">Email / Kênh Mở</small>
+                  <strong class="block font-sans text-lg text-white"><a href="mailto:nguyentqt8077@ut.edu.vn" class="hover:text-neon-cyan transition-colors">nguyentqt8077@ut.edu.vn</a></strong>
+                </div>
+              </li>
+              <li class="flex items-center gap-6 glass-dark p-6 rounded-2xl group hover:border-neon-cyan hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] transition-all">
+                <div class="w-16 h-16 bg-neon-cyan/10 border border-neon-cyan text-neon-cyan rounded-xl flex items-center justify-center text-3xl group-hover:bg-neon-cyan group-hover:text-black transition-all shadow-[0_0_15px_rgba(0,243,255,0.3)]">
+                  <i class="fa-solid fa-satellite"></i>
+                </div>
+                <div>
+                  <small class="block font-mono text-[11px] text-gray-500 uppercase font-bold tracking-widest mb-1">Cơ Sở Hoạt Động</small>
+                  <strong class="block font-sans text-lg text-white">TP. Hồ Chí Minh, Việt Nam</strong>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <form id="contact-form" class="lg:col-span-7 reveal-hidden reveal-right delay-200 relative glass-dark p-12 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] border-t-[8px] border-t-neon-cyan border-gray-800" novalidate>
+            <div class="hud-corner hud-tl"></div><div class="hud-corner hud-tr"></div>
+            <div class="hud-corner hud-bl"></div><div class="hud-corner hud-br"></div>
+            <div class="scanner-line"></div>
+
+            <h3 class="font-scifi text-4xl font-bold text-white mb-10 uppercase flex items-center gap-4 tracking-widest border-b border-gray-800 pb-4">
+              <i class="fa-solid fa-terminal text-black bg-neon-cyan p-2 rounded shadow-[0_0_10px_#00f3ff]"></i> Gửi Data Package
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div class="form-group group">
+                <label for="name" class="block font-mono text-[11px] font-bold text-neon-cyan tracking-widest uppercase mb-3">Định Danh (Tên) <span class="text-neon-crimson text-sm">*</span></label>
+                <input type="text" id="name" name="name" placeholder="Tên Chỉ Huy / Đối Tác" autocomplete="name" class="w-full bg-[#030712]/80 border border-gray-700 rounded-xl px-5 py-4 text-white font-mono text-sm focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_15px_rgba(0,243,255,0.3)] transition-all">
+                <small class="error text-neon-crimson font-mono text-[10px] mt-2 hidden block uppercase tracking-widest" id="error-name"></small>
+              </div>
+
+              <div class="form-group group">
+                <label for="email" class="block font-mono text-[11px] font-bold text-neon-cyan tracking-widest uppercase mb-3">Ping Back (Email) <span class="text-neon-crimson text-sm">*</span></label>
+                <input type="email" id="email" name="email" placeholder="vidu@email.com" autocomplete="email" class="w-full bg-[#030712]/80 border border-gray-700 rounded-xl px-5 py-4 text-white font-mono text-sm focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_15px_rgba(0,243,255,0.3)] transition-all">
+                <small class="error text-neon-crimson font-mono text-[10px] mt-2 hidden block uppercase tracking-widest" id="error-email"></small>
+              </div>
+            </div>
+
+            <div class="form-group mb-10 group">
+              <label for="message" class="block font-mono text-[11px] font-bold text-neon-cyan tracking-widest uppercase mb-3">Nội Dung Chỉ Thị <span class="text-neon-crimson text-sm">*</span></label>
+              <textarea id="message" name="message" rows="5" placeholder="Viết mã thông điệp của bạn..." class="w-full bg-[#030712]/80 border border-gray-700 rounded-xl px-5 py-4 text-white font-mono text-sm focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_15px_rgba(0,243,255,0.3)] transition-all resize-y"></textarea>
+              <small class="error text-neon-crimson font-mono text-[10px] mt-2 hidden block uppercase tracking-widest" id="error-message"></small>
+            </div>
+
+            <button type="submit" class="btn-cyber w-full py-5 bg-neon-cyan/20 border border-neon-cyan text-neon-cyan font-scifi text-2xl font-bold tracking-[0.2em] uppercase rounded-xl hover:text-black shadow-[0_0_15px_rgba(0,243,255,0.2)] transform hover:scale-[1.02] transition-all">
+              <i class="fa-solid fa-satellite-dish mr-3"></i> Upload Data
+            </button>
+
+            <p class="form-status text-center font-mono font-bold text-xs mt-6 hidden p-4 rounded-xl border border-gray-700 bg-gray-900 tracking-widest uppercase" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+         10. FOOTER
+         ============================================================ -->
+    <footer class="bg-[#030712] border-t border-neon-cyan/20 pt-16 pb-8 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+        
+        <div>
+          <strong class="font-scifi text-4xl font-bold uppercase tracking-widest text-white flex items-center gap-4">
+            <div class="w-12 h-12 bg-neon-cyan text-black rounded border border-neon-cyan flex items-center justify-center shadow-[0_0_20px_#00f3ff] transform rotate-45"><i class="fa-solid fa-bolt -rotate-45"></i></div>
+            Trí Nguyên
+          </strong>
+          <p class="font-mono text-xs text-gray-500 mt-5 font-bold tracking-widest uppercase border-l-2 border-neon-cyan pl-3">
+            Sinh viên CNTT &ndash; UTH. Hệ thống vận hành độc lập.
+          </p>
+        </div>
+
+        <nav aria-label="Liên kết chân trang" class="md:text-right">
+          <h4 class="font-scifi text-xl font-bold text-gray-500 uppercase tracking-widest mb-6">Directory Index</h4>
+          <ul class="flex flex-wrap md:justify-end gap-6 font-mono font-bold text-[10px] text-gray-400 uppercase tracking-[0.2em]">
+            <li><a href="#home" class="hover:text-neon-cyan hover:drop-shadow-[0_0_5px_#00f3ff] transition-all">Home</a></li>
+            <li><a href="#about" class="hover:text-neon-cyan hover:drop-shadow-[0_0_5px_#00f3ff] transition-all">About</a></li>
+            <li><a href="#projects" class="hover:text-neon-cyan hover:drop-shadow-[0_0_5px_#00f3ff] transition-all">Projects</a></li>
+            <li><a href="#contact" class="hover:text-neon-cyan hover:drop-shadow-[0_0_5px_#00f3ff] transition-all">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] font-bold text-gray-600 uppercase tracking-widest">
+        <p>SYS_DATE: <span id="year">2026</span> // BẢO LƯU QUYỀN TRUY CẬP.</p>
+        <p>CORE_TECH: HTML5 . TAILWIND . JARVIS SCRIPT</p>
+      </div>
+    </footer>
+
+    <!-- Nút quay lại đầu trang -->
+    <button id="back-to-top" type="button" aria-label="Quay lại đầu trang" class="fixed right-8 bottom-8 w-14 h-14 bg-[#030712] border-2 border-neon-cyan text-neon-cyan rounded-full flex items-center justify-center text-xl hover:bg-neon-cyan hover:text-black shadow-[0_0_20px_rgba(0,243,255,0.5)] hover:scale-110 transition-all z-50">
+      <i class="fa-solid fa-crosshairs animate-[spin_5s_linear_infinite]"></i>
+    </button>
+  </div> <!-- End #main-content -->
+
+  <!-- ============================================================
+       SCRIPTS (Siêu phẩm JARVIS HUD)
+       ============================================================ -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // 1. BOOT SEQUENCE (PRELOADER)
+      const preloader = document.getElementById('preloader');
+      const terminal = document.getElementById('terminal');
+      const mainContent = document.getElementById('main-content');
+      const bootLines = [
+        "Initiating JARVIS Protocol...",
+        "Establishing secure connection to mainframe...",
+        "Bypassing firewall... Success.",
+        "Loading UI Modules... 100%",
+        "Decrypting Agent Dossier... Trí Nguyên",
+        "System Online. Welcome."
+      ];
+      
+      let lineIndex = 0;
+      function showBootText() {
+        if (lineIndex < bootLines.length) {
+          const p = document.createElement('p');
+          p.textContent = "> " + bootLines[lineIndex];
+          terminal.appendChild(p);
+          lineIndex++;
+          setTimeout(showBootText, 300); // Tốc độ chạy chữ boot
+        } else {
+          setTimeout(() => {
+            preloader.style.opacity = '0';
+            preloader.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+              preloader.style.display = 'none';
+              mainContent.classList.remove('opacity-0');
+              initMainScripts(); // Chạy các script chính sau khi load xong
+            }, 800);
+          }, 500);
+        }
+      }
+      showBootText();
+
+      // ==========================================
+      // HÀM CHỨA TOÀN BỘ SCRIPT CHÍNH (Chạy sau Boot)
+      // ==========================================
+      function initMainScripts() {
+
+        // 2. CON TRỎ CHUỘT SNIPER
+        const cursorGlow = document.getElementById('cursor-glow');
+        const cursorDot = document.getElementById('cursor-dot');
+        document.addEventListener('mousemove', (e) => {
+          cursorGlow.style.left = e.clientX + 'px'; cursorGlow.style.top = e.clientY + 'px';
+          cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px';
+        });
+
+        // 3. HIỆU ỨNG GÕ CHỮ (Typing)
+        const typedTextSpan = document.getElementById("typing-effect");
+        const textArray = ["Khoa Học Máy Tính", "Trí Tuệ Nhân Tạo", "Kỹ Sư Hệ Thống"];
+        let textIdx = 0, charIdx = 0;
+        function type() {
+          if (charIdx < textArray[textIdx].length) {
+            typedTextSpan.textContent += textArray[textIdx].charAt(charIdx); charIdx++;
+            setTimeout(type, 100);
+          } else setTimeout(erase, 2000);
+        }
+        function erase() {
+          if (charIdx > 0) {
+            typedTextSpan.textContent = textArray[textIdx].substring(0, charIdx - 1); charIdx--;
+            setTimeout(erase, 50);
+          } else { textIdx = (textIdx + 1) % textArray.length; setTimeout(type, 500); }
+        }
+        setTimeout(type, 1000);
+
+        // 4. HIỆU ỨNG GIẢI MÃ CHỮ (Hacker Scramble Text)
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+        function scrambleText(element) {
+          if(element.dataset.scrambled) return; // Đã giải mã rồi thì thôi
+          element.dataset.scrambled = "true";
+          let iterations = 0;
+          const originalText = element.dataset.value;
+          const interval = setInterval(() => {
+            element.innerText = originalText.split("").map((letter, index) => {
+              if (letter === " ") return " ";
+              if (index < iterations) return originalText[index];
+              return letters[Math.floor(Math.random() * letters.length)];
+            }).join("");
+            if (iterations >= originalText.length) clearInterval(interval);
+            iterations += 1/3;
+          }, 30);
+        }
+
+        // 5. THẺ NGHIÊNG 3D VÀ HOLOGRAPHIC GLARE
+        const tiltCards = document.querySelectorAll('.tilt-card');
+        tiltCards.forEach(card => {
+          card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left; const y = e.clientY - rect.top;
+            const centerX = rect.width / 2; const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -12; 
+            const rotateY = ((x - centerX) / centerX) * 12;
+            
+            card.style.transform = `perspective(1500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+            card.style.transition = 'transform 0.1s ease-out';
+            
+            // Xử lý Glare
+            const glare = card.querySelector('.glare');
+            if (glare) {
+              const px = (x / rect.width) * 100;
+              const py = (y / rect.height) * 100;
+              glare.style.opacity = '1';
+              glare.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255,255,255,0.2) 0%, transparent 60%)`;
+            }
+          });
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = `perspective(1500px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+            card.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)';
+            const glare = card.querySelector('.glare');
+            if (glare) glare.style.opacity = '0';
+          });
+        });
+
+        // 6. BỘ LỌC DỰ ÁN
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            filterBtns.forEach(b => {
+              b.classList.remove('active', 'bg-neon-cyan', 'text-black', 'shadow-[0_0_15px_#00f3ff]');
+              b.classList.add('text-gray-400');
+            });
+            btn.classList.add('active', 'bg-neon-cyan', 'text-black', 'shadow-[0_0_15px_#00f3ff]');
+            btn.classList.remove('text-gray-400');
+
+            const filter = btn.getAttribute('data-filter');
+            projectCards.forEach(card => {
+              if (filter === 'all' || card.getAttribute('data-category') === filter) card.classList.remove('project-hidden');
+              else card.classList.add('project-hidden');
+            });
+          });
+        });
+
+        // 7. SCROLL REVEAL, COUNT UP & HACKER TEXT TRIGGER
+        let counted = false;
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('reveal-visible');
+              
+              // Chạy giải mã chữ
+              const hackerText = entry.target.querySelector('.hacker-text');
+              if(hackerText) scrambleText(hackerText);
+              if(entry.target.classList.contains('hacker-text')) scrambleText(entry.target);
+
+              // Đếm số
+              if(entry.target.id === 'home' || entry.target.querySelector('.count-up')) {
+                if(!counted) {
+                  document.querySelectorAll('.count-up').forEach(el => {
+                    const target = +el.getAttribute('data-count');
+                    let count = 0; const speed = target / 30;
+                    const updateCount = () => {
+                        if(count < target) { count += speed; el.innerText = Math.ceil(count); setTimeout(updateCount, 40); }
+                        else el.innerText = target;
+                    }
+                    updateCount();
+                  });
+                  counted = true;
+                }
+              }
+              observer.unobserve(entry.target); 
+            }
+          });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal-hidden, .hacker-text').forEach(el => observer.observe(el));
+
+        // 8. MENU MOBILE
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+        menuToggle.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+        document.querySelectorAll(".mobile-link").forEach(link => link.addEventListener("click", () => mobileMenu.classList.add("hidden")));
+
+        // 9. FORM VALIDATION
+        const contactForm = document.getElementById("contact-form");
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        function showError(id, msg) {
+          document.getElementById(`error-${id}`).textContent = msg;
+          document.getElementById(`error-${id}`).classList.remove("hidden");
+          document.getElementById(id).classList.add("border-neon-crimson");
+          document.getElementById(id).classList.remove("border-gray-700");
+        }
+        function clearError(id) {
+          document.getElementById(`error-${id}`).classList.add("hidden");
+          document.getElementById(id).classList.remove("border-neon-crimson");
+          document.getElementById(id).classList.add("border-gray-700");
+        }
+
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          let valid = true;
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const msg = document.getElementById("message").value.trim();
+          
+          if (name.length < 2) { showError("name", "Định danh cần ít nhất 2 ký tự."); valid = false; } else clearError("name");
+          if (!emailPattern.test(email)) { showError("email", "Tọa độ Email không hợp lệ."); valid = false; } else clearError("email");
+          if (msg.length < 10) { showError("message", "Khối lượng data quá thấp (ít nhất 10 ký tự)."); valid = false; } else clearError("message");
+
+          const status = document.getElementById("form-status");
+          status.classList.remove("hidden", "text-neon-cyan", "border-neon-cyan", "text-neon-crimson", "border-neon-crimson");
+          
+          if (valid) {
+            status.classList.add("text-neon-cyan", "border-neon-cyan");
+            status.textContent = ">>> Data Package đã được mã hóa và truyền tải thành công.";
+            contactForm.reset();
+          } else {
+            status.classList.add("text-neon-crimson", "border-neon-crimson");
+            status.textContent = ">>> ERR_01: Phát hiện lỗ hổng dữ liệu. Từ chối truyền tải.";
+          }
+        });
+        ["name", "email", "message"].forEach(id => document.getElementById(id).addEventListener("input", () => clearError(id)));
+
+        // 10. SCROLL HEADER & BACK TO TOP
+        const backToTop = document.getElementById("back-to-top");
+        const navLinks = document.querySelectorAll(".nav-link");
+        window.addEventListener("scroll", () => {
+          backToTop.classList.toggle("show", window.scrollY > 500);
+          let currentId = "";
+          document.querySelectorAll("section[id]").forEach(sec => { if (window.scrollY >= sec.offsetTop - 200) currentId = sec.id; });
+          navLinks.forEach(link => {
+            link.classList.remove("text-neon-cyan", "drop-shadow-[0_0_8px_#00f3ff]");
+            if (link.getAttribute("href") === "#" + currentId) link.classList.add("text-neon-cyan", "drop-shadow-[0_0_8px_#00f3ff]");
+          });
+        });
+        backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+      } // End initMainScripts
+    });
+  </script>
+</body>
+</html>

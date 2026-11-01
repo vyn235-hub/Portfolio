@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Trang tổng hợp portfolio cá nhân của các thành viên">
+  <title>Portfolio thành viên</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="topbar__logo" href="#top">portfolio<span class="topbar__dot">.</span>hub</a>
+      <button class="topbar__theme" id="themeBtn" type="button" aria-label="Đổi giao diện sáng/tối">☾</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero__inner">
+        <p class="hero__badge" id="siteBadge" hidden></p>
+        <h1 class="hero__title" id="siteTitle">Portfolio thành viên</h1>
+        <p class="hero__subtitle" id="siteSubtitle"></p>
+        <div class="search">
+          <label class="search__label" for="searchInput">Tìm thành viên</label>
+          <input class="search__input" id="searchInput" type="search" placeholder="Tìm theo tên..." autocomplete="off">
+        </div>
+        <p class="hero__count" id="memberCount" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="gallery" aria-label="Danh sách thành viên">
+      <div class="container">
+        <ul class="gallery__grid" id="memberGrid"></ul>
+        <p class="gallery__empty" id="emptyState" hidden>Không tìm thấy thành viên nào phù hợp.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Mỗi bạn là một trang portfolio riêng. Bấm vào ảnh đại diện để mở trang của bạn đó.</p>
+    </div>
+  </footer>
+
+  <script src="js/members.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

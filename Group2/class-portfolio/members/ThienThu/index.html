@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio của Dương Nguyễn Thiện Thư - sinh viên Khoa học dữ liệu và AI, UTH">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%233b3bff'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='800'%3ET%3C/text%3E%3C/svg%3E">
+  <title>Dương Nguyễn Thiện Thư | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <header class="nav">
+    <div class="nav__container">
+      <div class="nav__logo">thư.dev</div>
+      <button class="nav__toggle" id="navToggle" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="navMenu">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </button>
+      <nav class="nav__menu" id="navMenu" aria-label="Menu chính">
+        <a href="#home" class="nav__link">Trang chủ</a>
+        <a href="#about" class="nav__link">Giới thiệu</a>
+        <a href="#goals" class="nav__link">Mục tiêu</a>
+        <a href="#skills" class="nav__link">Kỹ năng</a>
+        <a href="#journey" class="nav__link">Hành trình</a>
+        <a href="#projects" class="nav__link">Dự án</a>
+        <a href="#contact" class="nav__link">Liên hệ</a>
+      </nav>
+      <button class="nav__theme" id="themeBtn" type="button" aria-label="Đổi giao diện sáng/tối">☾</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="home" id="home">
+      <div class="home__container">
+        <div class="home__content">
+          <span class="home__badge">Sinh viên năm 3 - UTH</span>
+          <h1 class="home__title">Dương Nguyễn Thiện Thư</h1>
+          <div class="home__typing">
+            <span id="typing"></span><span class="home__cursor">|</span>
+          </div>
+          <p class="home__description">
+            Định hướng Data Analyst / Data Scientist. Yêu thích phân tích dữ liệu, xây dựng giải pháp và học hỏi không ngừng.
+          </p>
+          <div class="home__cta">
+            <a href="#projects" class="btn btn--primary">Xem dự án</a>
+            <a href="#contact" class="btn btn--secondary">Liên hệ</a>
+          </div>
+          <div class="home__stats">
+            <div class="home__stat">
+              <span class="home__stat-number">2</span>
+              <span class="home__stat-label">Dự án</span>
+            </div>
+            <div class="home__stat">
+              <span class="home__stat-number">5</span>
+              <span class="home__stat-label">Kỹ năng</span>
+            </div>
+            <div class="home__stat">
+              <span class="home__stat-number">3</span>
+              <span class="home__stat-label">Năm học</span>
+            </div>
+          </div>
+        </div>
+        <div class="home__visual">
+          <figure class="code-window">
+            <div class="code-window__header">
+              <span class="code-window__dot"></span>
+              <span class="code-window__dot"></span>
+              <span class="code-window__dot"></span>
+              <span class="code-window__title">profile.py</span>
+            </div>
+            <div class="code-window__body">
+              <pre class="code-window__code"><code><span class="k">class</span> <span class="f">Thu</span>:
+  name = <span class="s">"Dương Nguyễn Thiện Thư"</span>
+  major = <span class="s">"Data Science &amp; AI"</span>
+  stack = [<span class="s">"SQL"</span>, <span class="s">"Python"</span>, <span class="s">"Web"</span>]
+
+  <span class="k">def</span> <span class="f">goal</span>(<span class="k">self</span>):
+    <span class="k">return</span> <span class="s">"Data Analyst"</span></code></pre>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about__container">
+        <h2 class="section__title">Giới thiệu</h2>
+        <div class="about__content">
+          <div class="about__image">
+            <img src="images/avatar.jpg" alt="Ảnh đại diện Dương Nguyễn Thiện Thư">
+          </div>
+          <div class="about__text">
+            <p class="about__description">
+              Tôi là Dương Nguyễn Thiện Thư, sinh viên năm 3 ngành CNTT, chuyên ngành Khoa học dữ liệu và AI tại Đại học Giao thông vận tải TP.HCM (UTH). Với định hướng trở thành Data Analyst / Data Scientist, tôi luôn nỗ lực trau dồi kiến thức về dữ liệu, thống kê và lập trình để giải quyết các vấn đề thực tế.
+            </p>
+            <p class="about__description">
+              Tôi yêu thích việc phân tích dữ liệu, tìm ra insight và xây dựng các dự án cá nhân để áp dụng lý thuyết vào thực hành. Mục tiêu của tôi là không ngừng học hỏi và phát triển bản thân trong lĩnh vực dữ liệu.
+            </p>
+            <div class="about__info">
+              <div class="about__info-item">
+                <strong class="about__info-label">Định hướng:</strong>
+                <span class="about__info-value">Data Analyst / Data Scientist</span>
+              </div>
+              <div class="about__info-item">
+                <strong class="about__info-label">Trường:</strong>
+                <span class="about__info-value">Đại học Giao thông vận tải TP.HCM (UTH)</span>
+              </div>
+              <div class="about__info-item">
+                <strong class="about__info-label">Địa điểm:</strong>
+                <span class="about__info-value">TP. Hồ Chí Minh</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="goals" id="goals">
+      <div class="goals__container">
+        <h2 class="section__title">Mục tiêu</h2>
+        <ol class="goals__list">
+          <li class="goals__item goals__item--1">
+            <article class="goals__card">
+              <span class="goals__number">1</span>
+              <h3 class="goals__card-title">Ngắn hạn</h3>
+              <p class="goals__card-description">Hoàn thiện nền tảng SQL, Python, thống kê; đưa dự án lên GitHub; tìm thực tập Data Analyst.</p>
+            </article>
+          </li>
+          <li class="goals__item goals__item--2">
+            <article class="goals__card">
+              <span class="goals__number">2</span>
+              <h3 class="goals__card-title">Trung hạn</h3>
+              <p class="goals__card-description">Cải thiện nhiều thuật toán, làm dự án thực tế hơn.</p>
+            </article>
+          </li>
+          <li class="goals__item goals__item--3">
+            <article class="goals__card">
+              <span class="goals__number">3</span>
+              <h3 class="goals__card-title">Dài hạn</h3>
+              <p class="goals__card-description">Có việc làm ổn định; dự phòng là học thêm văn bằng 2.</p>
+            </article>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="skills" id="skills">
+      <div class="skills__container">
+        <h2 class="section__title">Kỹ năng</h2>
+        <div class="skills__bars" id="skillBars">
+          <article class="skills__card">
+            <h3 class="skills__card-title">Dữ liệu</h3>
+            <div class="bar" data-level="85">
+              <div class="bar__header">
+                <span class="bar__name">SQL</span>
+                <span class="bar__percent">85%</span>
+              </div>
+              <div class="bar__track">
+                <div class="bar__fill"></div>
+              </div>
+            </div>
+            <div class="bar" data-level="80">
+              <div class="bar__header">
+                <span class="bar__name">Python</span>
+                <span class="bar__percent">80%</span>
+              </div>
+              <div class="bar__track">
+                <div class="bar__fill"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="skills__card">
+            <h3 class="skills__card-title">Web</h3>
+            <div class="bar" data-level="70">
+              <div class="bar__header">
+                <span class="bar__name">HTML</span>
+                <span class="bar__percent">70%</span>
+              </div>
+              <div class="bar__track">
+                <div class="bar__fill"></div>
+              </div>
+            </div>
+            <div class="bar" data-level="70">
+              <div class="bar__header">
+                <span class="bar__name">CSS</span>
+                <span class="bar__percent">70%</span>
+              </div>
+              <div class="bar__track">
+                <div class="bar__fill"></div>
+              </div>
+            </div>
+            <div class="bar" data-level="60">
+              <div class="bar__header">
+                <span class="bar__name">JavaScript</span>
+                <span class="bar__percent">60%</span>
+              </div>
+              <div class="bar__track">
+                <div class="bar__fill"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="skills__card">
+            <h3 class="skills__card-title">Kỹ năng mềm</h3>
+            <ul class="chips">
+              <li class="chip">Tự học</li>
+              <li class="chip">Giải quyết vấn đề</li>
+              <li class="chip">Tinh thần trách nhiệm</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="journey" id="journey">
+      <div class="journey__container">
+        <h2 class="section__title">Hành trình</h2>
+        <ol class="timeline">
+          <li class="timeline__item">
+            <div class="timeline__marker"></div>
+            <div class="timeline__content">
+              <span class="timeline__time">2024 - nay</span>
+              <h3 class="timeline__title">Đại học Giao thông vận tải TP.HCM (UTH)</h3>
+              <p class="timeline__description">Ngành Công nghệ thông tin, chuyên ngành Khoa học dữ liệu và AI. Hiện là sinh viên năm 3.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__marker"></div>
+            <div class="timeline__content">
+              <span class="timeline__time">Hoạt động</span>
+              <h3 class="timeline__title">Tự học và làm dự án cá nhân</h3>
+              <p class="timeline__description">Thực hành học máy và thị giác máy tính qua các dự án Machine Learning, Computer Vision.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__marker"></div>
+            <div class="timeline__content">
+              <span class="timeline__time">Hoạt động</span>
+              <h3 class="timeline__title">Chia sẻ mã nguồn trên GitHub</h3>
+              <p class="timeline__description">Lưu trữ và cập nhật các dự án học tập trên GitHub.</p>
+            </div>
+          </li>
+        </ol>
+        <div class="extra">
+          <article class="extra__card">
+            <h3 class="extra__card-title">Chứng chỉ / Giải thưởng</h3>
+            <p class="extra__card-content">Chưa có</p>
+          </article>
+          <article class="extra__card">
+            <h3 class="extra__card-title">Sở thích</h3>
+            <ul class="chips">
+              <li class="chip">Du lịch</li>
+              <li class="chip">Cà phê</li>
+              <li class="chip">Đọc blog về dữ liệu</li>
+              <li class="chip">Chụp ảnh đường phố</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="projects__container">
+        <h2 class="section__title">Dự án</h2>
+        <div class="filters">
+          <button class="filters__btn filters__btn--active" data-filter="all">Tất cả</button>
+          <button class="filters__btn" data-filter="ml">Machine Learning</button>
+          <button class="filters__btn" data-filter="cv">Computer Vision</button>
+        </div>
+        <div class="projects__grid">
+          <article class="project" data-category="ml">
+            <img src="images/project1.jpg" alt="Dự án Machine Learning" class="project__image" loading="lazy">
+            <div class="project__content">
+              <h3 class="project__title">Machine Learning</h3>
+              <p class="project__description">Tổng hợp các mô hình học máy đã thực hành, từ hồi quy tuyến tính, boosting (LightGBM) đến học tăng cường (Actor-Critic).</p>
+              <ul class="chips">
+                <li class="chip">Python</li>
+                <li class="chip">Linear Regression</li>
+                <li class="chip">LightGBM</li>
+                <li class="chip">Reinforcement Learning</li>
+              </ul>
+              <div class="project__links">
+                <a href="https://github.com/NappoLeeShi/Linear_Regresstion" target="_blank" rel="noopener" class="project__link">Linear Regression</a>
+                <a href="https://github.com/NappoLeeShi/lightgbm" target="_blank" rel="noopener" class="project__link">LightGBM</a>
+                <a href="https://github.com/NappoLeeShi/actor_critic" target="_blank" rel="noopener" class="project__link">Actor-Critic</a>
+              </div>
+              <button class="btn btn--secondary btn--small" data-open="p1">Xem chi tiết</button>
+            </div>
+          </article>
+
+          <article class="project" data-category="cv">
+            <img src="images/project2.jpg" alt="Dự án Computer Vision" class="project__image" loading="lazy">
+            <div class="project__content">
+              <h3 class="project__title">Xử lý thị giác máy tính / Computer Vision</h3>
+              <p class="project__description">Các bài thực hành xử lý và phân tích hình ảnh với các kỹ thuật thị giác máy tính cơ bản.</p>
+              <ul class="chips">
+                <li class="chip">Python</li>
+                <li class="chip">Computer Vision</li>
+              </ul>
+              <div class="project__links">
+                <a href="https://github.com/NappoLeeShi/computer_vision" target="_blank" rel="noopener" class="project__link">computer_vision</a>
+              </div>
+              <button class="btn btn--secondary btn--small" data-open="p2">Xem chi tiết</button>
+            </div>
+          </article>
+        </div>
+        <article class="demo">
+          <div class="demo__text">
+            <h3 class="demo__title">Thử ngay: Linear Regression tương tác</h3>
+            <p class="demo__desc">Bấm vào khung để thêm điểm dữ liệu. Đường hồi quy được tính lại ngay bằng phương pháp bình phương tối thiểu.</p>
+            <p class="demo__formula" id="demoFormula" aria-live="polite"></p>
+            <div class="demo__actions">
+              <button class="btn btn--primary btn--small" id="demoRandom" type="button">Thêm điểm ngẫu nhiên</button>
+              <button class="btn btn--secondary btn--small" id="demoReset" type="button">Xóa điểm</button>
+            </div>
+          </div>
+          <canvas class="demo__canvas" id="demoCanvas" width="480" height="300" role="img" aria-label="Khung vẽ các điểm dữ liệu và đường hồi quy tuyến tính"></canvas>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact__container">
+        <h2 class="section__title">Liên hệ</h2>
+        <div class="contact__content">
+          <div class="contact__info">
+            <h3 class="contact__info-title">Thông tin liên hệ</h3>
+            <div class="contact__info-item">
+              <strong>Email:</strong>
+              <a href="mailto:thudnt0781@ut.edu.vn">thudnt0781@ut.edu.vn</a>
+            </div>
+            <div class="contact__info-item">
+              <strong>Địa chỉ:</strong>
+              <span>TP. Hồ Chí Minh</span>
+            </div>
+            <div class="contact__info-item">
+              <strong>GitHub:</strong>
+              <a href="https://github.com/ThnThu" target="_blank" rel="noopener noreferrer">https://github.com/ThnThu</a>
+            </div>
+          </div>
+          <div class="contact__form-wrapper">
+            <form class="contact__form" id="contactForm" novalidate>
+              <div class="form__group">
+                <label for="name" class="form__label">Họ tên</label>
+                <input type="text" id="name" name="name" class="form__input">
+                <small class="form__error"></small>
+              </div>
+              <div class="form__group">
+                <label for="email" class="form__label">Email</label>
+                <input type="email" id="email" name="email" class="form__input">
+                <small class="form__error"></small>
+              </div>
+              <div class="form__group">
+                <label for="subject" class="form__label">Chủ đề</label>
+                <input type="text" id="subject" name="subject" class="form__input">
+                <small class="form__error"></small>
+              </div>
+              <div class="form__group">
+                <label for="message" class="form__label">Tin nhắn</label>
+                <textarea id="message" name="message" class="form__textarea" rows="5"></textarea>
+                <small class="form__error"></small>
+              </div>
+              <button type="submit" class="btn btn--primary">Gửi</button>
+            </form>
+            <p id="formSuccess" role="status" class="form__success"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__container">
+      <p class="footer__text">&copy; 2026 Dương Nguyễn Thiện Thư. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Lên đầu trang">↑</button>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal__overlay" id="modalOverlay"></div>
+    <div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal__close" id="modalClose" aria-label="Đóng">×</button>
+      <h3 class="modal__title" id="modalTitle"></h3>
+      <p class="modal__desc" id="modalDesc"></p>
+      <p class="modal__tech" id="modalTech"></p>
+      <div class="modal__links" id="modalLinks"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Portfolio của Nguyễn Đình Hào, sinh viên Công nghệ thông tin tại UTH, định hướng phát triển game.">
+  <meta name="author" content="Nguyễn Đình Hào">
+  <title>Nguyễn Đình Hào — Game Development Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <aside class="rail" id="rail">
+    <a class="wordmark" href="#home" aria-label="Nguyễn Đình Hào, đầu trang"><span class="wordmark-icon">H</span><span>HAO<span class="wordmark-dot">.</span></span></a>
+    <div class="rail-caption">GAME DEVELOPMENT<br>PORTFOLIO · 2026</div>
+    <nav class="rail-nav" aria-label="Điều hướng chính">
+      <a class="rail-link active" href="#home"><span>01</span> Tổng quan</a>
+      <a class="rail-link" href="#work"><span>05</span> Dự án</a>
+      <a class="rail-link" href="#profile"><span>03</span> Hồ sơ</a>
+      <a class="rail-link" href="#path"><span>04</span> Học tập</a>
+      <a class="rail-link" href="#contact"><span>05</span> Liên hệ</a>
+    </nav>
+    <div class="rail-bottom">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Chuyển giao diện sáng tối" aria-pressed="false"><span class="theme-glyph">◐</span><span>Giao diện</span></button>
+      <div class="rail-identity"><img src="images/avatar.jpg" alt="Ảnh đại diện Nguyễn Đình Hào"><span><strong>Nguyễn Đình Hào</strong><small>Sinh viên CNTT · UTH</small></span></div>
+    </div>
+  </aside>
+
+  <main id="main">
+    <header class="mobile-head">
+      <a class="wordmark" href="#home"><span class="wordmark-icon">H</span><span>HAO<span class="wordmark-dot">.</span></span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Mở menu" aria-expanded="false">☰</button>
+    </header>
+
+    <section class="hero page-section" id="home">
+  <div class="hero-topline"><span>PORTFOLIO · 2026</span><span>TP. HỒ CHÍ MINH, VIỆT NAM</span></div>
+  <div class="hero-layout">
+    <div class="hero-copy">
+      <p class="hero-kicker">Xin chào, mình là</p>
+      <h1>Nguyễn Đình<br><em>Hào.</em></h1>
+      <p class="hero-role">Sinh viên năm 3 ngành Công nghệ thông tin<br>Định hướng <strong>Phát triển game</strong></p>
+      <p class="hero-intro">Yêu thích trò chơi điện tử và lập trình game. Mình đang rèn luyện kỹ năng để biến ý tưởng sáng tạo thành những trải nghiệm chơi thú vị.</p>
+      <div class="hero-buttons"><a class="button button-dark" href="#work">Xem dự án <span>→</span></a><a class="text-link" href="#profile">Về mình <span>→</span></a></div>
+      <div class="hero-counts"><div><b>03</b><span>Dự án game</span></div><div><b>05</b><span>Kỹ năng chính</span></div><div><b>UTH</b><span>Đại học</span></div></div>
+    </div>
+    <figure class="hero-art hero-art-simple">
+      <img src="images/space-defender.svg" alt="Minh họa dự án game Space Defender">
+      <figcaption><span>MINH HỌA DỰ ÁN</span><strong>Space Defender · Game arcade 2D</strong></figcaption>
+    </figure>
+  </div>
+  <a class="scroll-cue" href="#work"><span></span> XEM CÁC DỰ ÁN</a>
+</section>
+
+    <section class="work page-section" id="work">
+  <div class="work-container">
+    <header class="section-head">
+      <p class="section-kicker">05 / Projects</p>
+      <h2 class="section-title">Dự án <span>cá nhân</span></h2>
+      <p class="section-sub">Ba ý tưởng dự án cá nhân theo định hướng phát triển game, tập trung vào gameplay 2D và thiết kế màn chơi.</p>
+    </header>
+    <div class="projects-grid">
+      <article class="project-card">
+        <figure class="project-media"><img src="images/game-platform.svg" alt="Minh họa dự án game platform 2D Pixel Quest" width="900" height="600"></figure>
+        <div class="project-body"><h3>Pixel Quest – Game platform 2D</h3><p>Thiết kế game platform 2D với nhân vật có thể chạy, nhảy, né chướng ngại vật và thu thập vật phẩm. Tập trung vào điều khiển nhân vật, va chạm, tính điểm và bố trí màn chơi.</p><ul class="project-tags"><li>C++</li><li>SFML</li><li>Gameplay 2D</li><li>Collision</li></ul></div>
+      </article>
+      <article class="project-card">
+        <figure class="project-media"><img src="images/space-defender.svg" alt="Minh họa game bắn phi thuyền Space Defender" width="900" height="600"></figure>
+        <div class="project-body"><h3>Space Defender – Game bắn phi thuyền</h3><p>Xây dựng game arcade nơi người chơi điều khiển phi thuyền né đạn và tiêu diệt kẻ địch. Tích hợp hệ thống bắn, sinh đợt kẻ địch, tính điểm và tăng độ khó theo thời gian.</p><ul class="project-tags"><li>Python</li><li>Pygame</li><li>Game loop</li><li>Sprite</li></ul></div>
+      </article>
+      <article class="project-card">
+        <figure class="project-media"><img src="images/dungeon-puzzle.svg" alt="Minh họa game giải đố Dungeon Puzzle" width="900" height="600"></figure>
+        <div class="project-body"><h3>Dungeon Puzzle – Game giải đố mê cung</h3><p>Thiết kế game giải đố theo màn, trong đó người chơi khám phá mê cung, thu thập chìa khóa và mở lối đi. Tập trung vào logic tương tác, điều kiện hoàn thành màn chơi và độ khó tăng dần.</p><ul class="project-tags"><li>Python</li><li>Pygame</li><li>Game logic</li><li>Level design</li></ul></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+    <section class="profile page-section" id="profile">
+      <div class="profile-photo"><img src="images/avatar.jpg" alt="Chân dung Nguyễn Đình Hào"><div class="photo-caption">NGUYỄN ĐÌNH HÀO <span>· UTH · 2026</span></div></div>
+      <div class="profile-content"><p class="eyebrow">PLAYER PROFILE · 01</p><h2>Mình thích tự học,<br>giải quyết vấn đề<br>và <span>tạo trải nghiệm.</span></h2><p class="profile-bio">Sinh viên năm ba ngành Công nghệ thông tin tại UTH, định hướng phát triển game. Mình đang rèn luyện Python, C++ và Pygame để xây dựng gameplay 2D, xử lý va chạm và thiết kế màn chơi.</p>
+        <div class="profile-facts"><div><span>HỌ TÊN</span><strong>Nguyễn Đình Hào</strong></div><div><span>NGÀNH HỌC</span><strong>Công nghệ thông tin</strong></div><div><span>TRƯỜNG</span><strong>Đại học Giao thông vận tải TP. Hồ Chí Minh (UTH)</strong></div><div><span>ĐỊNH HƯỚNG</span><strong>Phát triển game</strong></div></div>
+        <div class="skill-block"><div class="skill-heading"><span>SKILL LOADOUT</span><small>Mức độ tự đánh giá hiện tại</small></div><div class="skill-grid"><div class="skill-item"><span>Python</span><b>80%</b><i><u style="width:80%"></u></i></div><div class="skill-item"><span>SQL</span><b>80%</b><i><u style="width:80%"></u></i></div><div class="skill-item"><span>HTML</span><b>70%</b><i><u style="width:70%"></u></i></div><div class="skill-item"><span>CSS</span><b>60%</b><i><u style="width:60%"></u></i></div><div class="skill-item"><span>JavaScript</span><b>40%</b><i><u style="width:40%"></u></i></div></div><div class="soft-skills"><span>Self-learning</span><span>Problem solving</span><span>Responsibility</span></div></div>
+      </div>
+    </section>
+
+    <section class="path page-section" id="path">
+      <div class="path-title"><p class="eyebrow">THE NEXT LEVEL</p><h2>Đang học.<br>Đang <span>làm.</span></h2><img src="images/edu-library.jpg" alt="Không gian học tập"></div>
+      <div class="path-content"><article class="education-card"><span class="card-number">01 / EDUCATION</span><h3>Đại học Giao thông vận tải TP. Hồ Chí Minh</h3><p class="education-meta">Công nghệ thông tin <span>·</span> Sinh viên năm 3</p><p>Tập trung xây dựng kiến thức nền tảng về Công nghệ thông tin và phát triển game. Vận dụng kiến thức lập trình để xây dựng các trò chơi 2D, thử nghiệm cơ chế gameplay và cải thiện trải nghiệm người chơi.</p></article>
+        <div class="focus-card"><span class="card-number">02 / CURRENT FOCUS</span><h3>Mục tiêu tiếp theo</h3><p>Hoàn thành tốt chương trình năm ba, củng cố nền tảng C++ và Python, đồng thời học thêm kiến thức chuyên môn về phát triển game.</p><p>Rèn luyện tư duy thiết kế gameplay, xử lý chuyển động, va chạm và xây dựng các màn chơi hoàn chỉnh.</p><p>Tìm kiếm cơ hội thực tập hoặc làm việc trong lĩnh vực phát triển game sau khi tốt nghiệp.</p></div>
+        <div class="milestones"><span class="card-number">03 / ACTIVITIES</span><ul><li><b>01</b> Pixel Quest — game platform 2D</li><li><b>02</b> Space Defender — game bắn phi thuyền</li><li><b>03</b> Dungeon Puzzle — game giải đố mê cung</li><li><b>—</b> Câu lạc bộ, cuộc thi, thực tập — Chưa có</li></ul></div>
+        <div class="personal-card"><span class="card-number">04 / OFF THE SCREEN</span><h3>Chứng chỉ &amp; sở thích</h3><div class="personal-columns"><div><b>Chứng chỉ</b><span>Chưa có</span><b>Giải thưởng</b><span>Chưa có</span></div><div><b>Sở thích</b><span>Nghe nhạc · Cà phê · Chơi game</span><b>Đang tích lũy</b><span>Qua các dự án thực tế</span></div></div></div>
+      </div>
+    </section>
+
+    <footer class="contact page-section" id="contact">
+  <div class="contact-shell">
+    <div class="contact-message">
+      <div class="contact-top"><p class="eyebrow">LIÊN HỆ · CONTACT</p><span>UTH · TP. HỒ CHÍ MINH</span></div>
+      <p class="contact-overline">CÙNG BẮT ĐẦU MỘT DỰ ÁN</p>
+      <h2>Có ý tưởng?<br><em>Gửi mình nhé.</em></h2>
+      <p class="contact-copy">Bạn có thể liên hệ trực tiếp qua email.</p>
+      <a class="email-link" href="mailto:dinhhaonguyen52@gmail.com">dinhhaonguyen52@gmail.com <span>↗</span></a>
+      <button class="copy-email" id="copy-email" type="button">SAO CHÉP EMAIL <span>＋</span></button>
+    </div>
+    <aside class="contact-card">
+      <div class="contact-card-top"><span>CONTACT CARD</span><span>NO. 05</span></div>
+      <img class="contact-portrait" src="images/avatar.jpg" alt="Ảnh đại diện Nguyễn Đình Hào">
+      <h3>Nguyễn Đình Hào</h3>
+      <p class="contact-role">Sinh viên Công nghệ thông tin · UTH</p>
+      <div class="contact-detail"><span>EMAIL</span><a href="mailto:dinhhaonguyen52@gmail.com">dinhhaonguyen52@gmail.com</a></div>
+      <div class="contact-detail"><span>ĐỊA ĐIỂM</span><strong>TP. Hồ Chí Minh, Việt Nam</strong></div>
+      <a class="send-email" href="mailto:dinhhaonguyen52@gmail.com">GỬI EMAIL <span>↗</span></a>
+    </aside>
+  </div>
+  <div class="contact-bottom"><span>PORTFOLIO · PHÁT TRIỂN GAME</span><span>© <span id="year">2026</span> Nguyễn Đình Hào</span><a href="#home">VỀ ĐẦU TRANG ↑</a></div>
+</footer>
+  </main>
+</body>
+</html>
+
+
+
+
